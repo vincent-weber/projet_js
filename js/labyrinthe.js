@@ -9,24 +9,8 @@ let Labyrinthe;
         this.largeur = largeur;
         this.dest = dest;
         this.tab = [];
-
-        // this.setPion = function () {
-        //     let a = $(this).data('i');
-        //     let b = $(this).data('j');
-        //     if (typeof(self.tab[a][b]) === "undefined") {
-        //         if(self.joueur1) {
-        //             $(this).html('X');
-        //             self.tab[a][b] = true;
-        //             self.joueur1 = false
-        //         }
-        //         else {
-        //             $(this).html('O');
-        //             self.tab[a][b] = false;
-        //             self.joueur1 = true
-        //         }
-        //             $(this).mouseleave().unbind('mouseenter').unbind('mouseleave');
-        //     }
-        // }
+        this.player_hauteur = 0;
+        this.player_largeur = 0;
 
 
         let self = this;
@@ -37,8 +21,21 @@ let Labyrinthe;
             let trActu = $('<tr />');
             for (let j = 0 ; j < largeur ; ++j) {
                 let td=$('<td />');
-                trActu.append(td.addClass('case-laby'));
-                td.addClass('test').data('i',i).data('j',j).click(self.movePerso).append('');
+                td.attr('id', String(i) + String(j));
+
+                self.tab[i][j] = new Case(trActu, td);
+
+                if (i===0 && j===0) {
+                    trActu.append(td.addClass('case-perso'));
+                    self.case_perso = self.tab[i][j];
+                    self = this;
+                    console.log(self);
+                }
+                else if (i%2 === 1 && j%2 === 1)
+                    trActu.append(td.addClass('case-mur'));
+                else {
+                    trActu.append(td.addClass('case-laby'));
+                }
             }
             $(dest).append(trActu);
         }
