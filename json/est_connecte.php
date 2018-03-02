@@ -6,10 +6,10 @@
     if (isset($_SESSION['user_co'])) {
         $result->est_connecte = $_SESSION['user_co'];
     }
-    if (isset($_SESSION['damier_cree'])) {
-        $result->damier_cree = true;
+    if (isset($_SESSION['laby_cree'])) {
+        $result->laby_cree = true;
         $result->largeur = $_SESSION['largeur'];
-        $result->longueur = $_SESSION['longueur'];
+        $result->hauteur = $_SESSION['hauteur'];
     }
 
     header('Cache-Control: no-cache, must-revalidate');

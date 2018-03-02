@@ -65,20 +65,20 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
             'url':'/json/est_connecte.php'
         })
             .done(function (data) {
-                console.log(data.damier_cree);
-                console.log(data.longueur);
+                console.log(data.laby_cree);
+                console.log(data.hauteur);
                 console.log(data.largeur);
                 if (typeof (data.est_connecte) !== "undefined") {
                     $('#settings').show();
                     $('#userdeco').show();
-                    if (typeof(data.damier_cree) !== "undefined") {
-                        new Labyrinthe(data.longueur, data.largeur, '#labyrinthe');
-                        habillerDamier(data.longueur, data.largeur);
-                        $('#damier').show();
+                    if (typeof(data.laby_cree) !== "undefined") {
+                        new Labyrinthe(data.hauteur, data.largeur, '#labyrinthe');
+                        habillerDamier(data.hauteur, data.largeur);
+                        $('#labyrinthe').show();
                     }
                 }
                 else {
-                    $('#userco').slideDown(0);
+                    $('#userco').show();
                 }
 
             })

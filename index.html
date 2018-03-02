@@ -33,17 +33,17 @@
 
         <form style="display:none" id="settings" method="post" action="/json/settings.php">
             Choisissez les dimensions du labyrinthe <br/>
-            Largeur<input type="text" name="largeur">
-            Longueur<input type="text" name="longueur">
+            Largeur<input type="text" name="largeur"><br/>
+            Hauteur<input type="text" name="hauteur">
             <input type="submit" id="validersettings" value="Valider">
         </form>
 
-        <table id="labyrinthe" class="center"></table>
+        <table style="display:none" id="labyrinthe" class="center"></table>
 
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/plugins.js"></script>
-        <script src="js/damier.js"></script>
+        <script src="js/labyrinthe.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
