@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/js/case.js" afterPath="$PROJECT_DIR$/js/case.js" />
       <change beforePath="$PROJECT_DIR$/js/labyrinthe.js" afterPath="$PROJECT_DIR$/js/labyrinthe.js" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -243,7 +242,7 @@
       <workItem from="1519904317915" duration="2797000" />
       <workItem from="1519979321579" duration="2062000" />
       <workItem from="1519985795087" duration="10974000" />
-      <workItem from="1520064647503" duration="22104000" />
+      <workItem from="1520064647503" duration="22162000" />
     </task>
     <task id="LOCAL-00001" summary="Meilleure sémantique et suppression de code inutile">
       <created>1519982047822</created>
@@ -287,11 +286,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519998123833</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ajout d'un css temporaire sur les cases de solution du laby pour le débug">
+      <created>1520094520588</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1520094520588</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86626000" />
+    <option name="totallyTimeSpent" value="86684000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="26" width="1857" height="1092" extended-state="6" />
@@ -329,7 +335,8 @@
     <MESSAGE value="Le laby contient une case perso, des cases mur et des cases libres ou on peut se déplacer" />
     <MESSAGE value="Ajout/modif de css et gestion des déplacements" />
     <MESSAGE value="workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml" />
+    <MESSAGE value="ajout d'un css temporaire sur les cases de solution du laby pour le débug" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout d'un css temporaire sur les cases de solution du laby pour le débug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
