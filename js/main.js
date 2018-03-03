@@ -30,6 +30,11 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
         'border' : 'solid 2px orange'
     };
 
+    let css_solution = {
+        'background-color' : 'yellow',
+        'border' : 'solid 2px black'
+    }
+
     let css_table = {
         'width' : '750px',
     }
@@ -56,6 +61,7 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
             $(".case-laby").css(css_case);
             $(".case-perso").css(css_perso);
             $(".case-mur").css(css_mur);
+            $(".case-soluce").css(css_solution);
         };
 
         let actualiserPositionPerso = function () {
@@ -67,10 +73,9 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
         let initKeyboardEvents = function (laby_actuel) {
             $('body').on('keydown', function (event) {
 
-                //Faire une fonction qui vérifie si il est possible de se déplacer dans la direction voulue (quand il y aura les murs)
                 var h_player = laby_actuel.player_hauteur;
                 var l_player = laby_actuel.player_largeur
-                if (event.keyCode === 83      && h_player !== laby_actuel.hauteur-1 && !laby_actuel.tab[h_player+1][l_player].td.hasClass('case-mur'))  // S
+                if (event.keyCode === 83      && h_player !== laby_actuel.hauteur-1 && !laby_actuel.tab[h_player+1][l_player].td.hasClass('case-mur'))  //S
                     laby_actuel.player_hauteur++;
 
                 else if (event.keyCode === 90 && h_player !== 0                     && !laby_actuel.tab[h_player-1][l_player].td.hasClass('case-mur'))  //Z
