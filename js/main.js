@@ -1,15 +1,15 @@
 /*Classe labyrinthe
 
 FAIT    > Les dimensions du labyrinthe sont entrées par l'utilisateur
+        > Pouvoir se déplacer dans le labyrinthe au clavier
+        > Génération aléatoire de la solution du laby
+        > On démarre au début (en haut à gauche et on gagne quand on arrive à la case d'arrivée aléatoire
+
 
 A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement avec celui-ci (pas de BD)
-        > Tout d'abord essayer de créer une labyrinthe statique (avec bordures non aléatoires)
-        > Puis essayer de faire un algo qui génère un labyrinthe automatiquement (avec bordures aléatoires QUI SONT DES CASES ET NON PAS DES BORDER !)
-        > Pouvoir se déplacer dans le labyrinthe (clavier ou souris ?)
-        > On démarre au début (en haut à gauche et on gagne quand on arrive à la fin (en bas à droite)
-        X event.which pour bouger le perso ?
-
-
+        > Tout d'abord essayer de créer une labyrinthe statique (avec bordures non aléatoires) (roue de secours)
+        > Génération des murs (aléatoire ou pas ?)
+        > au lieu de return -1, return la case actuelle (donc la case de la victoire) et un évènement de produit quand on y arrive
  */
 
 (function() {
@@ -47,7 +47,6 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
     }
 
 
-
     $(document).ready(function () {
 
         let erreurCritique = function () {
@@ -66,6 +65,7 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
 
         let actualiserPositionPerso = function () {
             $(".case-laby").css(css_case);
+            $(".case-soluce").css(css_solution);
             $(".case-perso").css(css_perso);
         }
 
@@ -101,9 +101,6 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
             'url':'/json/est_connecte.php'
         })
             .done(function (data) {
-                console.log(data.laby_cree);
-                console.log(data.hauteur);
-                console.log(data.largeur);
                 if (typeof (data.est_connecte) !== "undefined") {
                     $('#settings').show();
                     $('#userdeco').show();

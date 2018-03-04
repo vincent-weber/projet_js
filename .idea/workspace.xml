@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4a0a7d6c-8901-46c4-9e08-1753a03f8288" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/js/labyrinthe.js" afterPath="$PROJECT_DIR$/js/labyrinthe.js" />
       <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -241,7 +240,7 @@
       <workItem from="1519979321579" duration="2062000" />
       <workItem from="1519985795087" duration="10974000" />
       <workItem from="1520064647503" duration="22511000" />
-      <workItem from="1520148535519" duration="13965000" />
+      <workItem from="1520148535519" duration="14067000" />
     </task>
     <task id="LOCAL-00001" summary="Meilleure sémantique et suppression de code inutile">
       <created>1519982047822</created>
@@ -306,11 +305,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520094672413</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Algo de génération de la solution fait, et factorisation(un peu) du code">
+      <created>1520162868446</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1520162868446</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100998000" />
+    <option name="totallyTimeSpent" value="101100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="26" width="1857" height="1092" extended-state="6" />
@@ -351,7 +357,8 @@
     <MESSAGE value="ajout d'un css temporaire sur les cases de solution du laby pour le débug" />
     <MESSAGE value="La classe case connait ses cases adjacentes pour les besoins d'un algo récursif" />
     <MESSAGE value="Initialisation des cases avec leurs cases adjacentes et début d'un algo très moche (mais pour le moment apparemment fonctionnel) de génération aléatoire de la solution du laby" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialisation des cases avec leurs cases adjacentes et début d'un algo très moche (mais pour le moment apparemment fonctionnel) de génération aléatoire de la solution du laby" />
+    <MESSAGE value="Algo de génération de la solution fait, et factorisation(un peu) du code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Algo de génération de la solution fait, et factorisation(un peu) du code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
