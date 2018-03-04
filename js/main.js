@@ -4,12 +4,16 @@ FAIT    > Les dimensions du labyrinthe sont entrées par l'utilisateur
         > Pouvoir se déplacer dans le labyrinthe au clavier
         > Génération aléatoire de la solution du laby
         > On démarre au début (en haut à gauche et on gagne quand on arrive à la case d'arrivée aléatoire
+        > Génération des murs
+        > au lieu de return -1, return la case actuelle (donc la case de la victoire) et un évènement de produit quand on y arrive
 
 
 A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement avec celui-ci (pas de BD)
-        > Tout d'abord essayer de créer une labyrinthe statique (avec bordures non aléatoires) (roue de secours)
-        > Génération des murs (aléatoire ou pas ?)
-        > au lieu de return -1, return la case actuelle (donc la case de la victoire) et un évènement de produit quand on y arrive
+        > si possible régler le problème qui apparait sur certaines générations en bas à droite (triangle de cases mur)
+        > Se débrouiller pour qu'on voit les limites de la map
+        > Quand on finit un laby, un autre commence avec comme case départ l'ancienne case arrivée
+
+
  */
 
 (function() {
@@ -22,15 +26,15 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
 
     let css_case = {
         'background-color' : 'white',
-        'border' : 'solid 2px black'
+        'border' : 'solid 2px #E8E5EB'
     };
 
     let css_mur = {
-        'background-color' : 'red',
-        'border' : 'solid 2px orange'
+        'background-color' : 'black',
+        'border' : 'solid 2px black'
     };
 
-    let css_solution = {
+    let css_arrivee = {
         'background-color' : 'yellow',
         'border' : 'solid 2px black'
     }
@@ -57,15 +61,22 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
 
             $('#labyrinthe').css(css_table).css('height', 750*longueur/largeur);
             $('#labyrinthe.center').css(css_center);
-            $(".case-laby").css(css_case);
-            $(".case-perso").css(css_perso);
+            // $(".case-laby").css(css_case).click(function () {
+            //     $(this).css(css_mur);
+            // });
+            $(".case-soluce").css(css_case);
+            $(".case-arrivee").css(css_arrivee);
+            $(".case-mauvais-chemin").css(css_case);
             $(".case-mur").css(css_mur);
-            $(".case-soluce").css(css_solution);
+            $(".case-perso").css(css_perso);
         };
 
         let actualiserPositionPerso = function () {
             $(".case-laby").css(css_case);
-            $(".case-soluce").css(css_solution);
+            $(".case-soluce").css(css_case);
+            $(".case-arrivee").css(css_arrivee);
+            $(".case-mauvais-chemin").css(css_case);
+            $(".case-mur").css(css_mur);
             $(".case-perso").css(css_perso);
         }
 

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a0a7d6c-8901-46c4-9e08-1753a03f8288" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/js/labyrinthe.js" afterPath="$PROJECT_DIR$/js/labyrinthe.js" />
       <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,21 +35,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="112" lean-forward="false" selection-start-line="9" selection-start-column="112" selection-end-line="9" selection-end-column="112" />
+            <state relative-caret-position="234">
+              <caret line="13" column="98" lean-forward="true" selection-start-line="13" selection-start-column="98" selection-end-line="13" selection-end-column="98" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="labyrinthe.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="labyrinthe.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/labyrinthe.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="40" column="69" lean-forward="true" selection-start-line="40" selection-start-column="69" selection-end-line="40" selection-end-column="69" />
+            <state relative-caret-position="516">
+              <caret line="496" column="111" lean-forward="true" selection-start-line="496" selection-start-column="111" selection-end-line="496" selection-end-column="111" />
               <folding />
             </state>
           </provider>
@@ -240,7 +241,7 @@
       <workItem from="1519979321579" duration="2062000" />
       <workItem from="1519985795087" duration="10974000" />
       <workItem from="1520064647503" duration="22511000" />
-      <workItem from="1520148535519" duration="14067000" />
+      <workItem from="1520148535519" duration="25635000" />
     </task>
     <task id="LOCAL-00001" summary="Meilleure sémantique et suppression de code inutile">
       <created>1519982047822</created>
@@ -312,11 +313,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520162868446</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Actualisation des tâches faites/a faire">
+      <created>1520162907960</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1520162907960</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101100000" />
+    <option name="totallyTimeSpent" value="112668000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="26" width="1857" height="1092" extended-state="6" />
@@ -358,7 +366,8 @@
     <MESSAGE value="La classe case connait ses cases adjacentes pour les besoins d'un algo récursif" />
     <MESSAGE value="Initialisation des cases avec leurs cases adjacentes et début d'un algo très moche (mais pour le moment apparemment fonctionnel) de génération aléatoire de la solution du laby" />
     <MESSAGE value="Algo de génération de la solution fait, et factorisation(un peu) du code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Algo de génération de la solution fait, et factorisation(un peu) du code" />
+    <MESSAGE value="Actualisation des tâches faites/a faire" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualisation des tâches faites/a faire" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -742,18 +751,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
+    <entry file="file://$PROJECT_DIR$/js/labyrinthe.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="112" lean-forward="false" selection-start-line="9" selection-start-column="112" selection-end-line="9" selection-end-column="112" />
+        <state relative-caret-position="516">
+          <caret line="496" column="111" lean-forward="true" selection-start-line="496" selection-start-column="111" selection-end-line="496" selection-end-column="111" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/labyrinthe.js">
+    <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="40" column="69" lean-forward="true" selection-start-line="40" selection-start-column="69" selection-end-line="40" selection-end-column="69" />
+        <state relative-caret-position="234">
+          <caret line="13" column="98" lean-forward="true" selection-start-line="13" selection-start-column="98" selection-end-line="13" selection-end-column="98" />
           <folding />
         </state>
       </provider>
