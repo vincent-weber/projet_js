@@ -11,8 +11,7 @@ let Labyrinthe;
         this.tab = [];
         this.player_hauteur = 0;
         this.player_largeur = 0;
-        this.count = 0;
-
+        this.case_soluce = null;
 
         let self = this;
 
@@ -127,7 +126,6 @@ let Labyrinthe;
 
         let randomBasDroite = function (h_Bas, l_Bas, h_Droite, l_Droite) {
             var r_bd = Math.random();
-            console.log(r_bd);
             if (r_bd < 0.5) {
                 self.tab[h_Bas][l_Bas].td.addClass('case-soluce');
                 return defCaseSoluce(h_Bas, l_Bas, 'bas');
@@ -164,7 +162,6 @@ let Labyrinthe;
 
         let randomHautGaucheBas = function (h_Haut, l_Haut, h_Gauche, l_Gauche, h_Bas, l_Bas) {
             var r_hgb = Math.random();
-            console.log(r_hgb);
             if (r_hgb < 0.33) {
                 self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
@@ -182,7 +179,6 @@ let Labyrinthe;
 
         let randomHautGaucheDroite = function (h_Haut, l_Haut, h_Gauche, l_Gauche, h_Droite, l_Droite) {
             var r_hgd = Math.random();
-            console.log(r_hgd);
             if (r_hgd < 0.33) {
                 self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
@@ -199,7 +195,6 @@ let Labyrinthe;
 
         let randomHautBasDroite = function (h_Haut, l_Haut, h_Bas, l_Bas, h_Droite, l_Droite) {
             var r_hbd = Math.random();
-            console.log(r_hbd);
             if (r_hbd < 0.33) {
                 self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
@@ -233,15 +228,14 @@ let Labyrinthe;
 
 
         let defCaseSoluce = function (h, l, mvtPrecedent) {
-            console.log(mvtPrecedent);
             if (mvtPrecedent === 'bas'){
                 if (self.tab[h][l].aGauche === null || self.tab[h][l].aGauche.td.hasClass('case-soluce') || pasAGauche(h, l)) {
                     if (self.tab[h][l].enBas === null || self.tab[h][l].enBas.td.hasClass('case-soluce') || pasEnBas(h, l)) {
                         if (self.tab[h][l].aDroite === null || self.tab[h][l].aDroite.td.hasClass('case-soluce') || pasADroite(h, l)) {
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         }
                         else if (pasADroite(h, l))  // que à droite
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {
                             self.tab[h][l+1].td.addClass('case-soluce');
                             return defCaseSoluce(h, l+1, 'droite');
@@ -249,7 +243,7 @@ let Labyrinthe;
                     }
                     else if (self.tab[h][l].aDroite === null || self.tab[h][l].aDroite.td.hasClass('case-soluce') || pasADroite(h, l)) {  // que en bas
                         if (pasEnBas(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {
                             self.tab[h+1][l].td.addClass('case-soluce');
                             return defCaseSoluce(h+1, l, 'bas');
@@ -258,16 +252,15 @@ let Labyrinthe;
 
                     else {  //bas ou droite
                         if (pasEnBas(h, l) || pasADroite(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else
-                            console.log('WTF');
                             randomBasDroite(h+1, l, h, l+1);
                     }
                 }
                 else if (self.tab[h][l].enBas === null || self.tab[h][l].enBas.td.hasClass('case-soluce') || pasEnBas(h, l)) {
                     if (self.tab[h][l].aDroite === null || self.tab[h][l].aDroite.td.hasClass('case-soluce') || pasADroite(h, l)) { // que a gauche
                         if (pasAGauche(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {
                             self.tab[h][l-1].td.addClass('case-soluce');
                             return defCaseSoluce(h, l-1, 'gauche');
@@ -275,20 +268,20 @@ let Labyrinthe;
                     }
                     else { // a gauche ou a droite
                         if (pasAGauche(h, l) || pasADroite(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else
                             randomGaucheDroite(h, l-1, h, l+1);
                     }
                 }
                 else if (self.tab[h][l].aDroite === null || self.tab[h][l].aDroite.td.hasClass('case-soluce') || pasADroite(h, l)) { // gauche ou bas
                     if (pasAGauche(h, l) || pasEnBas(h, l))
-                        return -1;
+                        self.case_soluce = self.tab[h][l];
                     else
                         randomGaucheBas(h, l-1, h+1, l);
                 }
                 else {  // gauche, bas ou droite
                     if (pasAGauche(h, l) || pasEnBas(h, l) || pasADroite(h, l))
-                        return -1;
+                        self.case_soluce = self.tab[h][l];
                     else
                         randomGaucheBasDroite(h, l-1, h+1, l, h, l+1);
                 }
@@ -300,9 +293,9 @@ let Labyrinthe;
                 if (self.tab[h][l].enBas === null || self.tab[h][l].enBas.td.hasClass('case-soluce') || pasEnBas(h, l)) {
                     if (self.tab[h][l].aDroite === null || self.tab[h][l].aDroite.td.hasClass('case-soluce') || pasADroite(h, l)) {
                         if (self.tab[h][l].enHaut === null || self.tab[h][l].enHaut.td.hasClass('case-soluce') || pasEnHaut(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else if (pasEnHaut(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {  // que en haut
                             self.tab[h-1][l].td.addClass('case-soluce');
                             return defCaseSoluce(h-1, l, 'haut');
@@ -310,7 +303,7 @@ let Labyrinthe;
                     }
                     else if (self.tab[h][l].enHaut === null || self.tab[h][l].enHaut.td.hasClass('case-soluce') || pasEnHaut(h, l)) {
                         if (pasADroite(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {  // que a droite
                             self.tab[h][l+1].td.addClass('case-soluce');
                             return defCaseSoluce(h, l+1, 'droite');
@@ -318,16 +311,15 @@ let Labyrinthe;
                     }
                     else {  // en haut ou a droite
                         if (pasEnHaut(h, l) || pasADroite(h, l))
-                            return -1;
-                        else {
+                            self.case_soluce = self.tab[h][l];
+                        else
                             randomHautDroite(h-1, l, h, l+1);
-                        }
                     }
                 }
                 else if (self.tab[h][l].aDroite === null || self.tab[h][l].aDroite.td.hasClass('case-soluce') || pasADroite(h, l)) {
                     if (self.tab[h][l].enHaut === null || self.tab[h][l].enHaut.td.hasClass('case-soluce') || pasEnHaut(h, l)) { // que en bas
                         if (pasEnBas(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {
                             self.tab[h+1][l].td.addClass('case-soluce');
                             return defCaseSoluce(h+1, l, 'bas');
@@ -335,7 +327,7 @@ let Labyrinthe;
                     }
                     else {  // en bas ou en haut
                         if (pasEnHaut(h, l) || pasEnBas(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else
                             randomHautBas(h-1, l, h+1, l);
                     }
@@ -343,15 +335,14 @@ let Labyrinthe;
 
                 else if (self.tab[h][l].enHaut === null || self.tab[h][l].enHaut.td.hasClass('case-soluce') || pasEnHaut(h, l)) {
                     if (pasEnBas(h, l) || pasADroite(h, l)) //bas ou droite
-                        return -1;
-                    else {
+                        self.case_soluce = self.tab[h][l];
+                    else
                         randomBasDroite(h+1, l, h, l+1);
-                    }
 
                 }
                 else {
                     if (pasEnHaut(h, l) || pasEnBas(h, l) || pasADroite(h, l))
-                        return -1;
+                        self.case_soluce = self.tab[h][l];
                     else
                         randomHautBasDroite(h-1, l, h+1, l, h, l+1);
                 }
@@ -363,9 +354,9 @@ let Labyrinthe;
                 if (self.tab[h][l].aDroite === null || self.tab[h][l].aDroite.td.hasClass('case-soluce') || pasADroite(h, l)) {
                     if (self.tab[h][l].enHaut === null || self.tab[h][l].enHaut.td.hasClass('case-soluce') || pasEnHaut(h, l)) {
                         if (self.tab[h][l].aGauche === null || self.tab[h][l].aGauche.td.hasClass('case-soluce') || pasAGauche(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else if (pasAGauche(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {  // que a gauche
                             self.tab[h][l-1].td.addClass('case-soluce');
                             return defCaseSoluce(h, l-1, 'gauche');
@@ -373,7 +364,7 @@ let Labyrinthe;
                     }
                     else if (self.tab[h][l].aGauche === null || self.tab[h][l].aGauche.td.hasClass('case-soluce') || pasAGauche(h, l)) {
                         if (pasEnHaut(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {  // que en haut
                             self.tab[h-1][l].td.addClass('case-soluce');
                             return defCaseSoluce(h-1, l, 'haut');
@@ -381,16 +372,15 @@ let Labyrinthe;
                     }
                     else {  // en haut ou a gauche
                         if (pasEnHaut(h, l) || pasAGauche(h, l))
-                            return -1;
-                        else {
+                            self.case_soluce = self.tab[h][l];
+                        else
                             randomHautGauche(h-1, l, h, l-1);
-                        }
                     }
                 }
                 else if (self.tab[h][l].enHaut === null || self.tab[h][l].enHaut.td.hasClass('case-soluce') || pasEnHaut(h, l)) {
                     if (self.tab[h][l].aGauche === null || self.tab[h][l].aGauche.td.hasClass('case-soluce') || pasAGauche(h, l)) { // que a droite
                         if (pasADroite(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {
                             self.tab[h][l+1].td.addClass('case-soluce');
                             return defCaseSoluce(h, l+1, 'droite');
@@ -398,7 +388,7 @@ let Labyrinthe;
                     }
                     else {  // a droite ou a gauche
                         if (pasADroite(h, l) || pasAGauche(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else
                             randomGaucheDroite(h, l-1, h, l+1);
                     }
@@ -406,13 +396,13 @@ let Labyrinthe;
 
                 else if (self.tab[h][l].aGauche === null || self.tab[h][l].aGauche.td.hasClass('case-soluce') || pasAGauche(h, l)) {
                     if (pasEnHaut(h, l) || pasADroite(h, l)) //haut ou droite
-                        return -1;
+                        self.case_soluce = self.tab[h][l];
                     else
                         randomHautDroite(h-1, l, h, l+1);
                 }
                 else {
                     if (pasEnHaut(h, l) || pasAGauche(h, l) || pasADroite(h, l))
-                        return -1;
+                        self.case_soluce = self.tab[h][l];
                     else
                         randomHautGaucheDroite(h-1, l, h, l-1, h, l+1);
                 }
@@ -424,9 +414,9 @@ let Labyrinthe;
                 if (self.tab[h][l].enHaut === null || self.tab[h][l].enHaut.td.hasClass('case-soluce') || pasEnHaut(h, l)) {
                     if (self.tab[h][l].aGauche === null || self.tab[h][l].aGauche.td.hasClass('case-soluce') || pasAGauche(h, l)) {
                         if (self.tab[h][l].enBas === null || self.tab[h][l].enBas.td.hasClass('case-soluce') || pasEnBas(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else if (pasEnBas(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {  // que en bas
                             self.tab[h+1][l].td.addClass('case-soluce');
                             return defCaseSoluce(h+1, l, 'bas');
@@ -434,7 +424,7 @@ let Labyrinthe;
                     }
                     else if (self.tab[h][l].enBas === null || self.tab[h][l].enBas.td.hasClass('case-soluce') || pasEnBas(h, l)) {
                         if (pasAGauche(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {  // que a gauche
                             self.tab[h][l-1].td.addClass('case-soluce');
                             return defCaseSoluce(h, l-1, 'gauche');
@@ -442,16 +432,15 @@ let Labyrinthe;
                     }
                     else {  // en bas ou a gauche
                         if (pasEnBas(h, l) || pasAGauche(h, l))
-                            return -1;
-                        else {
+                            self.case_soluce = self.tab[h][l];
+                        else
                             randomGaucheBas(h, l-1, h+1, l);
-                        }
                     }
                 }
                 else if (self.tab[h][l].aGauche === null || self.tab[h][l].aGauche.td.hasClass('case-soluce') || pasAGauche(h, l)) {
                     if (self.tab[h][l].enBas === null || self.tab[h][l].enBas.td.hasClass('case-soluce') || pasEnBas(h, l)) { // que en haut
                         if (pasEnHaut(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else {
                             self.tab[h-1][l].td.addClass('case-soluce');
                             return defCaseSoluce(h-1, l, 'haut');
@@ -459,7 +448,7 @@ let Labyrinthe;
                     }
                     else {  // en haut ou en bas
                         if (pasEnHaut(h, l) || pasEnBas(h, l))
-                            return -1;
+                            self.case_soluce = self.tab[h][l];
                         else
                             randomHautBas(h-1, l, h+1, l);
                     }
@@ -467,20 +456,65 @@ let Labyrinthe;
 
                 else if (self.tab[h][l].enBas === null || self.tab[h][l].enBas.td.hasClass('case-soluce') || pasEnBas(h, l)) {
                     if (pasEnHaut(h, l) || pasAGauche(h, l)) //haut ou gauche
-                        return -1;
+                        self.case_soluce = self.tab[h][l];
                     else
                         randomHautGauche(h-1, l, h, l-1);
                 }
                 else {
                     if (pasEnHaut(h, l) || pasAGauche(h, l) || pasEnBas(h, l))
-                        return -1;
+                        self.case_soluce = self.tab[h][l];
                     else
                         randomHautGaucheBas(h-1, l, h, l-1, h+1, l);
                 }
             }
+            return self.case_soluce;
         }
 
+        let caseMauvaisChemin = function (h, l) {
+            var nbCasesCheminAdj = 0;
+            if (!self.tab[h][l].td.hasClass('case-mauvais-chemin') && self.tab[h][l].enHaut !== null &&
+                (self.tab[h-1][l].td.hasClass('case-mauvais-chemin') || self.tab[h-1][l].td.hasClass('case-soluce')))
+                ++nbCasesCheminAdj;
+            if (!self.tab[h][l].td.hasClass('case-mauvais-chemin') && self.tab[h][l].enBas !== null &&
+                (self.tab[h+1][l].td.hasClass('case-mauvais-chemin') || self.tab[h+1][l].td.hasClass('case-soluce')))
+                ++nbCasesCheminAdj;
+            if (!self.tab[h][l].td.hasClass('case-mauvais-chemin') && self.tab[h][l].aGauche !== null &&
+                (self.tab[h][l-1].td.hasClass('case-mauvais-chemin') || self.tab[h][l-1].td.hasClass('case-soluce')))
+                ++nbCasesCheminAdj;
+            if (!self.tab[h][l].td.hasClass('case-mauvais-chemin') && self.tab[h][l].aDroite !== null &&
+                (self.tab[h][l+1].td.hasClass('case-mauvais-chemin') || self.tab[h][l+1].td.hasClass('case-soluce')))
+                ++nbCasesCheminAdj;
+            if (nbCasesCheminAdj === 1) {
+                return true;
+            }
+            return false;
+        }
 
+        let defCasesMauvaisChemin = function () {
+            var count = 0;
+            for (let h = 0 ; h < self.hauteur ; ++h) {
+                for (let l = 0 ; l < self.largeur ; ++l) {
+                    if (self.tab[h][l].td.hasClass('case-perso') || self.tab[h][l].td.hasClass('case-arrivee'))
+                        continue;
+                    if (caseMauvaisChemin(h, l)) {
+                        self.tab[h][l].td.addClass('case-mauvais-chemin');
+                        ++count;
+                    }
+                }
+            }
+            return count;
+        }
+
+        let defCasesMur = function () {
+            for (let h = 0 ; h < self.hauteur ; ++h) {
+                for (let l = 0 ; l < self.largeur ; ++l) {
+                    if (!self.tab[h][l].td.hasClass('case-soluce') &&
+                        !self.tab[h][l].td.hasClass('case-mauvais-chemin') &&
+                        !self.tab[h][l].td.hasClass('case-perso'))
+                        self.tab[h][l].td.addClass('case-mur');
+                }
+            }
+        }
 
         console.log('construction du labyrinthe');
         for (let i = 0 ; i < self.hauteur ; ++i) {
@@ -489,7 +523,7 @@ let Labyrinthe;
             for (let j = 0 ; j < self.largeur ; ++j) {
                 let td=$('<td />');
                 td.attr('id', String(i) + String(j));
-
+                td.click(self.clickchange);
                 self.tab[i][j] = new Case(trActu, td);
 
                 if (i===0 && j===0) {
@@ -505,7 +539,16 @@ let Labyrinthe;
             $(dest).append(trActu);
         }
         initCases();
-        defCaseSoluce(0, 0, 'bas');
+        defCaseSoluce(0, 0, 'bas').td.addClass('case-arrivee');
+        console.log(self.case_soluce);
+        ;
+        do {
+            var count = 0;
+            count = defCasesMauvaisChemin();
+        }
+        while (count > 0);
+
+        defCasesMur();
         console.log(self);
     }
 }) ();

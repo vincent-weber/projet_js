@@ -4,7 +4,6 @@
     <list default="true" id="4a0a7d6c-8901-46c4-9e08-1753a03f8288" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/js/labyrinthe.js" afterPath="$PROJECT_DIR$/js/labyrinthe.js" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -241,7 +240,7 @@
       <workItem from="1519979321579" duration="2062000" />
       <workItem from="1519985795087" duration="10974000" />
       <workItem from="1520064647503" duration="22511000" />
-      <workItem from="1520148535519" duration="25635000" />
+      <workItem from="1520148535519" duration="25670000" />
     </task>
     <task id="LOCAL-00001" summary="Meilleure sémantique et suppression de code inutile">
       <created>1519982047822</created>
@@ -320,11 +319,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520162907960</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Ajout de css pour les nouvelles classes html">
+      <created>1520187573567</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1520187573567</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112668000" />
+    <option name="totallyTimeSpent" value="112703000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="26" width="1857" height="1092" extended-state="6" />
@@ -367,7 +373,8 @@
     <MESSAGE value="Initialisation des cases avec leurs cases adjacentes et début d'un algo très moche (mais pour le moment apparemment fonctionnel) de génération aléatoire de la solution du laby" />
     <MESSAGE value="Algo de génération de la solution fait, et factorisation(un peu) du code" />
     <MESSAGE value="Actualisation des tâches faites/a faire" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualisation des tâches faites/a faire" />
+    <MESSAGE value="Ajout de css pour les nouvelles classes html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de css pour les nouvelles classes html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
