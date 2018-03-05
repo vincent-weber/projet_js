@@ -6,12 +6,11 @@ FAIT    > Les dimensions du labyrinthe sont entrées par l'utilisateur
         > On démarre au début (en haut à gauche et on gagne quand on arrive à la case d'arrivée aléatoire
         > Génération des murs
         > au lieu de return -1, return la case actuelle (donc la case de la victoire) et un évènement de produit quand on y arrive
+        > Se débrouiller pour qu'on voit les limites de la map
 
 
 A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement avec celui-ci (pas de BD)
-        > si possible régler le problème qui apparait sur certaines générations en bas à droite (triangle de cases mur)
-        > Se débrouiller pour qu'on voit les limites de la map
-        > Quand on finit un laby, un autre commence avec comme case départ l'ancienne case arrivée
+        > Résoudre le bug bizarre du mode campagne
 
 
  */
@@ -21,38 +20,38 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
 
     let css_perso = {
         'background-color' : 'blue',
-        'border' : 'solid 2px black',
-    }
+        //'border' : 'solid 2px blue'
+    };
 
     let css_case = {
         'background-color' : 'white',
-        'border' : 'solid 2px #E8E5EB'
+        //'border' : 'solid 1px white'
     };
 
     let css_mur = {
         'background-color' : 'black',
-        'border' : 'solid 2px black'
+        //'border' : 'solid 2px black'
     };
 
     let css_arrivee = {
         'background-color' : 'yellow',
-        'border' : 'solid 2px black'
-    }
+        //'border' : 'solid 2px yellow'
+    };
 
     let css_table = {
         'width' : '750px',
-    }
+        //'background-color' : 'white'
+    };
 
     let css_center = {
         'margin-left' : 'auto',
         'margin-right' :'auto',
         'margin-top' : '85px',
         'margin-bottom' : '85px'
-    }
+    };
 
 
     $(document).ready(function () {
-
         let erreurCritique = function () {
             $('<body/>').html('Une erreur s\'est produite. Veuillez réessayer.')
         };
@@ -61,31 +60,29 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
 
             $('#labyrinthe').css(css_table).css('height', 750*longueur/largeur);
             $('#labyrinthe.center').css(css_center);
-            // $(".case-laby").css(css_case).click(function () {
-            //     $(this).css(css_mur);
-            // });
-            $(".case-soluce").css(css_case);
+            $(".case-laby").css(css_case);
+            //$(".case-soluce").css(css_case);
             $(".case-arrivee").css(css_arrivee);
-            $(".case-mauvais-chemin").css(css_case);
+            //$(".case-mauvais-chemin").css(css_case);
             $(".case-mur").css(css_mur);
             $(".case-perso").css(css_perso);
         };
 
         let actualiserPositionPerso = function () {
             $(".case-laby").css(css_case);
-            $(".case-soluce").css(css_case);
+            //$(".case-soluce").css(css_case);
             $(".case-arrivee").css(css_arrivee);
-            $(".case-mauvais-chemin").css(css_case);
+            //$(".case-mauvais-chemin").css(css_case);
             $(".case-mur").css(css_mur);
             $(".case-perso").css(css_perso);
-        }
+        };
 
 
-        let initKeyboardEvents = function (laby_actuel) {
+        let initKeyboardEvents = function (laby_actuel, estCampagne) {
             $('body').on('keydown', function (event) {
 
                 var h_player = laby_actuel.player_hauteur;
-                var l_player = laby_actuel.player_largeur
+                var l_player = laby_actuel.player_largeur;
                 if (event.keyCode === 83      && h_player !== laby_actuel.hauteur-1 && !laby_actuel.tab[h_player+1][l_player].td.hasClass('case-mur'))  //S
                     laby_actuel.player_hauteur++;
 
@@ -102,10 +99,27 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
                 laby_actuel.case_perso.td.removeClass('case-perso').addClass('case-laby');
                 laby_actuel.case_perso = laby_actuel.tab[laby_actuel.player_hauteur][laby_actuel.player_largeur];
                 laby_actuel.case_perso.td.removeClass('case-laby').addClass('case-perso');
+                if (laby_actuel.case_perso.td.hasClass('case-arrivee')) {
+                    if (estCampagne)
+                        agrandirLaby(laby_actuel);
+                    else {
+                        alert('Vous avez gagné ! Essayez le mode campagne !');
+                    }
+                }
+
                 actualiserPositionPerso();
 
             });
-        }
+        };
+
+        let agrandirLaby = function (laby_actuel) {
+            $('#labyrinthe').remove();
+            $('#div-laby').append('<table style="display:none" id="labyrinthe" class="center"></table>');
+            laby_actuel = new Labyrinthe(laby_actuel.hauteur+1, laby_actuel.largeur+1, laby_actuel.player_hauteur, laby_actuel.player_largeur, '#labyrinthe');
+            habillerLaby(laby_actuel.hauteur, laby_actuel.largeur);
+            //$('#div-laby').show();
+            $('#labyrinthe').show();
+        };
 
 
         $.ajax({
@@ -114,12 +128,21 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
             .done(function (data) {
                 if (typeof (data.est_connecte) !== "undefined") {
                     $('#settings').show();
+                    $('#campagne').show();
                     $('#userdeco').show();
+
                     if (typeof(data.laby_cree) !== "undefined") {
-                        let laby_actuel = new Labyrinthe(data.hauteur, data.largeur, '#labyrinthe');
+
+                        let laby_actuel = new Labyrinthe(data.hauteur, data.largeur, 0, 0, '#labyrinthe');
                         habillerLaby(data.hauteur, data.largeur);
-                        initKeyboardEvents(laby_actuel);
+                        $('#div-laby').show();
+                        console.log(data.campagne);
+                        if (typeof(data.campagne) === false)
+                            initKeyboardEvents(laby_actuel, false);
+                        else
+                            initKeyboardEvents(laby_actuel, true);
                         $('#labyrinthe').show();
+
                     }
                 }
                 else {
@@ -158,6 +181,18 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
         });
 
         $('#settings').submit(function () {
+            $.ajax({
+                url: $(this).attr('action'),
+                method: $(this).attr('method'),
+                data: $(this).serialize()
+            })
+                .done(function (data) {
+                    window.location.reload(true);
+                })
+                .fail(erreurCritique);
+        });
+
+        $('#campagne').submit(function () {
             $.ajax({
                 url: $(this).attr('action'),
                 method: $(this).attr('method'),

@@ -2,6 +2,9 @@
 
 session_start();
 
+if (isset($_SESSION['campagne']))
+    $_SESSION['campagne'] = false;
+
 if (isset($_POST['largeur']) && isset($_POST['hauteur'])) {
     $_SESSION['laby_cree'] = true;
     $largeur = intval($_POST['largeur']);
