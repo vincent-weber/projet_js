@@ -3,14 +3,16 @@ let Labyrinthe;
 (function() {
     "use strict";
 
-    Labyrinthe = function(hauteur,largeur,dest) {
+    Labyrinthe = function(hauteur,largeur, h_debut, l_debut, dest) {
 
         this.hauteur = hauteur;
         this.largeur = largeur;
+        this.h_debut = h_debut;
+        this.l_debut = l_debut;
         this.dest = dest;
         this.tab = [];
-        this.player_hauteur = 0;
-        this.player_largeur = 0;
+        this.player_hauteur = h_debut;
+        this.player_largeur = l_debut;
         this.case_soluce = null;
 
         let self = this;
@@ -515,6 +517,8 @@ let Labyrinthe;
                 }
             }
         }
+        
+
 
         console.log('construction du labyrinthe');
         for (let i = 0 ; i < self.hauteur ; ++i) {
@@ -526,7 +530,7 @@ let Labyrinthe;
                 td.click(self.clickchange);
                 self.tab[i][j] = new Case(trActu, td);
 
-                if (i===0 && j===0) {
+                if (i === self.h_debut && j === self.l_debut) {
                     self.tab[i][j].tr.append(self.tab[i][j].td.addClass('case-perso').addClass('case-soluce'));
                     self.case_perso = self.tab[i][j];
                     self = this;
@@ -539,9 +543,9 @@ let Labyrinthe;
             $(dest).append(trActu);
         }
         initCases();
-        defCaseSoluce(0, 0, 'bas').td.addClass('case-arrivee');
+        defCaseSoluce(self.h_debut, self.l_debut, 'bas').td.addClass('case-arrivee');
         console.log(self.case_soluce);
-        ;
+
         do {
             var count = 0;
             count = defCasesMauvaisChemin();
@@ -549,6 +553,13 @@ let Labyrinthe;
         while (count > 0);
 
         defCasesMur();
+        // supprMursInutiles();
+        //
+        // do {
+        //     var count2 = 0;
+        //     count2 = supprMursRestants();
+        // }
+        // while (count2 > 0);
         console.log(self);
     }
 }) ();
