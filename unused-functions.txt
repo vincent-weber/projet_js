@@ -1,0 +1,101 @@
+
+
+
+######### FONCTIONS NON UTILISEES CAR CASSENT L'UNICITE DE LA SOLUTION DU LABYRINTHE #########
+
+
+
+let supprMursInutiles = function () {
+            for (let h = 0 ; h < self.hauteur ; ++h) {
+                for (let l = 0 ; l < self.largeur ; ++l) {
+
+                    if ((self.tab[h][l].enHaut !== null  && self.tab[h][l].enHaut.td.hasClass('case-arrivee'))  ||
+                        (self.tab[h][l].aGauche !== null && self.tab[h][l].aGauche.td.hasClass('case-arrivee')) ||
+                        (self.tab[h][l].enBas !== null   && self.tab[h][l].enBas.td.hasClass('case-arrivee'))   ||
+                        (self.tab[h][l].aDroite !== null && self.tab[h][l].aDroite.td.hasClass('case-arrivee')))
+                        continue;
+
+                    if ((self.tab[h][l].td.hasClass('case-mur') &&
+                     self.tab[h][l].enHaut         !== null &&  self.tab[h][l].enHaut.td.hasClass('case-mur')         &&
+                     self.tab[h][l].aGauche        !== null &&  self.tab[h][l].aGauche.td.hasClass('case-mur')        &&
+                     self.tab[h][l].enBas          !== null && !self.tab[h][l].enBas.td.hasClass('case-mur')          &&
+                     self.tab[h][l].enBas.aDroite  !== null &&  self.tab[h][l].enBas.aDroite.td.hasClass('case-mur')  &&
+                     self.tab[h][l].aDroite        !== null && !self.tab[h][l].aDroite.td.hasClass('case-mur')        /*&&
+                     self.tab[h][l].enHaut.aGauche !== null && !self.tab[h][l].enHaut.aGauche.td.hasClass('case-mur') &&
+                     self.tab[h][l].enBas.aGauche  !== null && !self.tab[h][l].enBas.aGauche.td.hasClass('case-mur')  &&
+                     self.tab[h][l].enHaut.aDroite !== null && !self.tab[h][l].enHaut.aDroite.td.hasClass('case-mur')*/)
+
+                    ||
+
+                    (self.tab[h][l].td.hasClass('case-mur') &&
+                     self.tab[h][l].aGauche        !== null &&  self.tab[h][l].aGauche.td.hasClass('case-mur')        &&
+                     self.tab[h][l].enBas          !== null &&  self.tab[h][l].enBas.td.hasClass('case-mur')          &&
+                     self.tab[h][l].enHaut         !== null && !self.tab[h][l].enHaut.td.hasClass('case-mur')         &&
+                     self.tab[h][l].enHaut.aDroite !== null &&  self.tab[h][l].enHaut.aDroite.td.hasClass('case-mur') /*&&
+                     self.tab[h][l].enHaut.aGauche !== null && !self.tab[h][l].enHaut.aGauche.td.hasClass('case-mur') &&
+                     self.tab[h][l].enBas.aGauche  !== null && !self.tab[h][l].enBas.aGauche.td.hasClass('case-mur')  */&&
+                     self.tab[h][l].aDroite        !== null && !self.tab[h][l].aDroite.td.hasClass('case-mur')        /*&&
+                     self.tab[h][l].enBas.aDroite  !== null && !self.tab[h][l].enBas.aDroite.td.hasClass('case-mur')*/)
+
+                    ||
+
+                    (self.tab[h][l].td.hasClass('case-mur') &&
+                     self.tab[h][l].enBas          !== null &&  self.tab[h][l].enBas.td.hasClass('case-mur')          &&
+                     self.tab[h][l].aDroite        !== null &&  self.tab[h][l].aDroite.td.hasClass('case-mur')        &&
+                     self.tab[h][l].enHaut         !== null && !self.tab[h][l].enHaut.td.hasClass('case-mur')         &&
+                     self.tab[h][l].enHaut.aGauche !== null &&  self.tab[h][l].enHaut.aGauche.td.hasClass('case-mur') &&
+                     self.tab[h][l].aGauche        !== null && !self.tab[h][l].aGauche.td.hasClass('case-mur')       /* &&
+                     self.tab[h][l].enBas.aGauche  !== null && !self.tab[h][l].enBas.aGauche.td.hasClass('case-mur')  &&
+                     self.tab[h][l].enBas.aDroite  !== null && !self.tab[h][l].enBas.aDroite.td.hasClass('case-mur')  &&
+                     self.tab[h][l].enHaut.aDroite !== null && !self.tab[h][l].enHaut.aDroite.td.hasClass('case-mur')*/)
+
+                    ||
+
+                    (self.tab[h][l].td.hasClass('case-mur') &&
+                     self.tab[h][l].aDroite        !== null &&  self.tab[h][l].aDroite.td.hasClass('case-mur')        &&
+                     self.tab[h][l].enHaut         !== null &&  self.tab[h][l].enHaut.td.hasClass('case-mur')         &&
+                     self.tab[h][l].enBas          !== null && !self.tab[h][l].enBas.td.hasClass('case-mur')          &&
+                     self.tab[h][l].enBas.aGauche  !== null &&  self.tab[h][l].enBas.aGauche.td.hasClass('case-mur')  &&
+                     //self.tab[h][l].enHaut.aGauche !== null && !self.tab[h][l].enHaut.aGauche.td.hasClass('case-mur') &&
+                     self.tab[h][l].aGauche        !== null && !self.tab[h][l].aGauche.td.hasClass('case-mur')        /*&&
+                     self.tab[h][l].enBas.aDroite  !== null && !self.tab[h][l].enBas.aDroite.td.hasClass('case-mur')  &&
+                     self.tab[h][l].enHaut.aDroite !== null && !self.tab[h][l].enHaut.aDroite.td.hasClass('case-mur')*/)) {
+                    self.tab[h][l].td.removeClass('case-mur').addClass('test');
+
+                    }
+                }
+            }
+        }
+
+        let murASuppr = function (h, l) {
+            let nbMursAdjacents = 0;
+            if (self.tab[h][l].enHaut === null || self.tab[h][l].aGauche === null || self.tab[h][l].enBas === null || self.tab[h][l].aDroite === null ||
+                self.tab[h][l].enHaut !== null )
+                return false;
+            if (self.tab[h][l].enHaut.td.hasClass('case-mur'))
+                ++nbMursAdjacents;
+            if (self.tab[h][l].aGauche.td.hasClass('case-mur'))
+                ++nbMursAdjacents;
+            if (self.tab[h][l].enBas.td.hasClass('case-mur'))
+                ++nbMursAdjacents;
+            if (self.tab[h][l].aDroite.td.hasClass('case-mur'))
+                ++nbMursAdjacents;
+            if (nbMursAdjacents === 3)
+                return true;
+            return false;
+        }
+
+        let supprMursRestants = function () {
+            let nb = 0;
+            for (let h = 0; h < self.hauteur; ++h) {
+                for (let l = 0; l < self.largeur; ++l) {
+                    if (!self.tab[h][l].td.hasClass('case-mur'))
+                        continue;
+                    if (murASuppr(h, l)) {
+                        ++nb;
+                        self.tab[h][l].td.removeClass('case-mur')/*.addClass('case-mauvais-chemin')*/;
+                    }
+                }
+            }
+            return nb;
+        }
