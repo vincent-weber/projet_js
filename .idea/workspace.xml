@@ -269,7 +269,7 @@
       <workItem from="1519985795087" duration="10974000" />
       <workItem from="1520064647503" duration="22511000" />
       <workItem from="1520148535519" duration="26048000" />
-      <workItem from="1520238518310" duration="19704000" />
+      <workItem from="1520238518310" duration="19760000" />
     </task>
     <task id="LOCAL-00001" summary="Meilleure sémantique et suppression de code inutile">
       <created>1519982047822</created>
@@ -376,11 +376,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520263380556</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Ajout de 2 attributs pour connaitre début du laby">
+      <created>1520263443136</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1520263443136</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132785000" />
+    <option name="totallyTimeSpent" value="132841000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="26" width="1857" height="1092" extended-state="6" />
@@ -427,7 +434,8 @@
     <MESSAGE value="Génération aléatoire du laby finie (reste quelques finitions)" />
     <MESSAGE value="Fichier contenant les fonctions abandonnées" />
     <MESSAGE value="Ajout du mode campagne buggé pour l'instant" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout du mode campagne buggé pour l'instant" />
+    <MESSAGE value="Ajout de 2 attributs pour connaitre début du laby" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de 2 attributs pour connaitre début du laby" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

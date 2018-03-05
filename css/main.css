@@ -19,6 +19,7 @@ html {
 html, body {
     height: 95%;
     padding: 0;
+    margin-bottom: 10%;
 }
 
 #center {
@@ -33,6 +34,15 @@ html, body {
     height:100%;
     border:2px solid #dedede;
     width:600px;
+}
+
+#div-laby {
+    background-color : black;
+    padding-top : 1%;
+    padding-bottom: 1%;
+    margin-top: 100px;
+    /*margin-left: 25%;*/
+    /*margin-right: 25%;*/
 }
 
 /*

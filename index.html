@@ -38,7 +38,14 @@
             <input type="submit" id="validersettings" value="Valider">
         </form>
 
-        <table style="display:none" id="labyrinthe" class="center"></table>
+        <form style="display: none" id="campagne" method="post" action="/json/campagne.php">
+            <input type="submit" id="lancercampagne" value="Mode Campagne">
+        </form>
+
+        <div id="div-laby" style="display: none">
+            <table style="display:none" id="labyrinthe" class="center"></table>
+        </div>
+
 
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
