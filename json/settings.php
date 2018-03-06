@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_SESSION['campagne']))
+if (isset($_SESSION['campagne']) && $_SESSION['campagne'] == true)
     $_SESSION['campagne'] = false;
 
 if (isset($_POST['largeur']) && isset($_POST['hauteur'])) {

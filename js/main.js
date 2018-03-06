@@ -80,7 +80,7 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
 
         let initKeyboardEvents = function (laby_actuel, estCampagne) {
             $('body').on('keydown', function (event) {
-                console.log('hello');
+                console.log(estCampagne);
                 var h_player = laby_actuel.player_hauteur;
                 var l_player = laby_actuel.player_largeur;
                 if (event.keyCode === 83 || event.keyCode === 90 || event.keyCode === 81 || event.keyCode === 68) {
@@ -125,28 +125,38 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
             'url':'/json/est_connecte.php'
         })
             .done(function (data) {
-                if (typeof (data.est_connecte) !== "undefined") {
-                    $('#settings').show();
-                    $('#campagne').show();
-                    $('#userdeco').show();
+                if (data.fail_co === false) {
+                    if (data.est_connecte === true) {
+                        $('#settings').show();
+                        $('#campagne').show();
+                        $('#userdeco').show();
 
-                    if (typeof(data.laby_cree) !== "undefined") {
-                        $('#div-laby').show();
-                        let laby_actuel = new Labyrinthe(data.hauteur, data.largeur, 0, 0, '#labyrinthe');
-                        habillerLaby(data.hauteur, data.largeur);
+                        if (typeof(data.laby_cree) !== "undefined") {
+                            $('#div-laby').show();
+                            let laby_actuel = new Labyrinthe(data.hauteur, data.largeur, 0, 0, '#labyrinthe');
+                            habillerLaby(data.hauteur, data.largeur);
+                            console.log(data.campagne);
+                            if (data.campagne === false)
+                                initKeyboardEvents(laby_actuel, false);
 
-                        console.log(data.campagne);
-                        /*if (typeof(data.campagne) === false)
-                            initKeyboardEvents(laby_actuel, false);*/
-                        //else
-                        initKeyboardEvents(laby_actuel, true);
-                        $('#labyrinthe').show();
+                            else
+                                initKeyboardEvents(laby_actuel, true);
 
+                            $('#labyrinthe').show();
+
+                        }
+                    }
+                    else {
+                        $('#div-jeu').hide();
+                        $('#userco').show();
                     }
                 }
                 else {
+                    $('#userco').append('<p>Identifiants incorrects</p>');
+                    $('#div-jeu').hide();
                     $('#userco').show();
                 }
+
 
             })
             .fail(erreurCritique);
@@ -158,8 +168,6 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
                 data:$(this).serialize()
             })
                 .done(function (data) {
-                    console.log('data=',data);
-                    if(data.est_connecte === true)
                         window.location.reload(true);
 
                 })

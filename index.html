@@ -20,27 +20,33 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <form style="display:none" id = "userco" method="post" action="/json/connexion.php">
-            <input type="text" name="username"><br/>
-            <input type="text" name="password"><br/>
-            <input type="submit" id="validerco" value="Se connecter">
-        </form>
 
-        <form style="display:none" id = "userdeco" method="post" action="/json/deconnexion.php">
-            Vous êtes connecté !<br/>
-            <input type="submit" name="validerdeco" value="Se déconnecter">
-        </form>
+        <div id="div-co">
+            <form style="display:none" id = "userco" method="post" action="/json/connexion.php">
+                <input type="text" name="username"><br/>
+                <input type="password" name="password"><br/>
+                <input type="submit" id="validerco" value="Se connecter">
+            </form>
 
-        <form style="display:none" id="settings" method="post" action="/json/settings.php">
-            Choisissez les dimensions du labyrinthe <br/>
-            Largeur<input type="text" name="largeur"><br/>
-            Hauteur<input type="text" name="hauteur">
-            <input type="submit" id="validersettings" value="Valider">
-        </form>
+            <form style="display:none" id = "userdeco" method="post" action="/json/deconnexion.php">
+                Vous êtes connecté !<br/>
+                <input id="button-deco" type="submit" name="validerdeco" value="Se déconnecter">
+            </form>
+        </div>
 
-        <form style="display: none" id="campagne" method="post" action="/json/campagne.php">
-            <input type="submit" id="lancercampagne" value="Mode Campagne">
-        </form>
+        <div id="div-jeu">
+            <form style="display:none" id="settings" method="post" action="/json/settings.php">
+                Choisissez les dimensions du labyrinthe :<br/>
+                Largeur : <input type="text" name="largeur"><br/>
+                Hauteur : <input type="text" name="hauteur"><br/><br/>
+                <input type="submit" id="validersettings" value="Valider">
+            </form>
+            <br/>
+            <form style="display: none" id="campagne" method="post" action="/json/campagne.php">
+                <input type="submit" id="lancercampagne" value="Mode Campagne">
+            </form>
+        </div>
+
 
         <div id="div-laby" style="display: none">
             <table style="display:none" id="labyrinthe" class="center"></table>
