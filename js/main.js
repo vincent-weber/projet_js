@@ -80,46 +80,45 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
 
         let initKeyboardEvents = function (laby_actuel, estCampagne) {
             $('body').on('keydown', function (event) {
-
+                console.log('hello');
                 var h_player = laby_actuel.player_hauteur;
                 var l_player = laby_actuel.player_largeur;
-                if (event.keyCode === 83      && h_player !== laby_actuel.hauteur-1 && !laby_actuel.tab[h_player+1][l_player].td.hasClass('case-mur'))  //S
-                    laby_actuel.player_hauteur++;
+                if (event.keyCode === 83 || event.keyCode === 90 || event.keyCode === 81 || event.keyCode === 68) {
+                    if (event.keyCode === 83      && h_player !== laby_actuel.hauteur-1 && !laby_actuel.tab[h_player+1][l_player].td.hasClass('case-mur'))  //S
+                        laby_actuel.player_hauteur++;
 
-                else if (event.keyCode === 90 && h_player !== 0                     && !laby_actuel.tab[h_player-1][l_player].td.hasClass('case-mur'))  //Z
-                    laby_actuel.player_hauteur--;
+                    else if (event.keyCode === 90 && h_player !== 0                     && !laby_actuel.tab[h_player-1][l_player].td.hasClass('case-mur'))  //Z
+                        laby_actuel.player_hauteur--;
 
-                else if (event.keyCode === 81 && l_player !== 0                     && !laby_actuel.tab[h_player][l_player-1].td.hasClass('case-mur'))  //Q
-                    laby_actuel.player_largeur--;
+                    else if (event.keyCode === 81 && l_player !== 0                     && !laby_actuel.tab[h_player][l_player-1].td.hasClass('case-mur'))  //Q
+                        laby_actuel.player_largeur--;
 
-                else if (event.keyCode === 68 && l_player !== laby_actuel.largeur-1 && !laby_actuel.tab[h_player][l_player+1].td.hasClass('case-mur'))  //D
-                    laby_actuel.player_largeur++;
+                    else if (event.keyCode === 68 && l_player !== laby_actuel.largeur-1 && !laby_actuel.tab[h_player][l_player+1].td.hasClass('case-mur'))  //D
+                        laby_actuel.player_largeur++;
 
 
-                laby_actuel.case_perso.td.removeClass('case-perso').addClass('case-laby');
-                laby_actuel.case_perso = laby_actuel.tab[laby_actuel.player_hauteur][laby_actuel.player_largeur];
-                laby_actuel.case_perso.td.removeClass('case-laby').addClass('case-perso');
-                if (laby_actuel.case_perso.td.hasClass('case-arrivee')) {
-                    if (estCampagne)
-                        agrandirLaby(laby_actuel);
-                    else {
-                        alert('Vous avez gagné ! Essayez le mode campagne !');
+                    laby_actuel.case_perso.td.removeClass('case-perso').addClass('case-laby');
+                    laby_actuel.case_perso = laby_actuel.tab[laby_actuel.player_hauteur][laby_actuel.player_largeur];
+                    laby_actuel.case_perso.td.removeClass('case-laby').addClass('case-perso');
+                    actualiserPositionPerso();
+                    if (laby_actuel.case_perso.td.hasClass('case-arrivee')) {
+                        if (estCampagne)
+                            agrandirLaby(laby_actuel);
+                        else
+                            alert('Vous avez gagné ! Essayez le mode campagne !');
                     }
                 }
-
-                actualiserPositionPerso();
-
             });
-        };
+        }
 
         let agrandirLaby = function (laby_actuel) {
-            $('#labyrinthe').remove();
-            $('#div-laby').append('<table style="display:none" id="labyrinthe" class="center"></table>');
-            laby_actuel = new Labyrinthe(laby_actuel.hauteur+1, laby_actuel.largeur+1, laby_actuel.player_hauteur, laby_actuel.player_largeur, '#labyrinthe');
-            habillerLaby(laby_actuel.hauteur, laby_actuel.largeur);
-            //$('#div-laby').show();
+            $('body').off('keydown');
+            $('#labyrinthe').replaceWith('<table style="display: none" id="labyrinthe" class="center"></table>');
+            let nouv_laby = new Labyrinthe(laby_actuel.hauteur+1, laby_actuel.largeur+1, laby_actuel.player_hauteur, laby_actuel.player_largeur, '#labyrinthe');
+            habillerLaby(nouv_laby.hauteur, nouv_laby.largeur);
+            initKeyboardEvents(nouv_laby, true);
             $('#labyrinthe').show();
-        };
+        }
 
 
         $.ajax({
@@ -132,15 +131,15 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
                     $('#userdeco').show();
 
                     if (typeof(data.laby_cree) !== "undefined") {
-
+                        $('#div-laby').show();
                         let laby_actuel = new Labyrinthe(data.hauteur, data.largeur, 0, 0, '#labyrinthe');
                         habillerLaby(data.hauteur, data.largeur);
-                        $('#div-laby').show();
+
                         console.log(data.campagne);
-                        if (typeof(data.campagne) === false)
-                            initKeyboardEvents(laby_actuel, false);
-                        else
-                            initKeyboardEvents(laby_actuel, true);
+                        /*if (typeof(data.campagne) === false)
+                            initKeyboardEvents(laby_actuel, false);*/
+                        //else
+                        initKeyboardEvents(laby_actuel, true);
                         $('#labyrinthe').show();
 
                     }

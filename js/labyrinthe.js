@@ -14,6 +14,7 @@ let Labyrinthe;
         this.player_hauteur = h_debut;
         this.player_largeur = l_debut;
         this.case_soluce = null;
+        this.case_perso = null;
 
         let self = this;
 
@@ -560,6 +561,6 @@ let Labyrinthe;
         //     count2 = supprMursRestants();
         // }
         // while (count2 > 0);
-        console.log(self);
+        //console.log(self);
     }
 }) ();
