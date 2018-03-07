@@ -36,9 +36,14 @@ html, body {
     width:600px;
 }
 
+#div-haut {
+    height: 200px;
+    position: relative;
+}
+
 #div-co {
     background-color: red;
-    margin-top: 40px;
+    margin-top: 100px;
     margin-bottom: 40px;
     margin-right: 40px;
     padding-top: 10px;
@@ -47,7 +52,7 @@ html, body {
     padding-bottom: 15px;
     text-align: center;
     font: 15px arial, sans-serif;
-    font-size: xx-large;
+    font-size: x-large;
     float: right;
 }
 
@@ -62,17 +67,53 @@ html, body {
     padding-bottom: 15px;
     text-align: center;
     font: 15px arial, sans-serif;
-    font-size: xx-large;
+    font-size: x-large;
     float: left;
 }
 
 #div-laby {
     background-color : black;
-    padding-top : 1%;
+    padding-top : 1px;
     padding-bottom: 1%;
     margin-top: 100px;
-    /*margin-left: 25%;*/
-    /*margin-right: 25%;*/
+
+}
+
+#div-infos {
+    margin-left : 25px;
+    width: 150px;
+    float:left;
+}
+
+#labyrinthe {
+    margin: 0 auto;
+}
+
+#div-timer {
+    margin-right: 40px;
+    float: right;
+}
+
+#temps-ecoule {
+
+}
+
+#icone-arrivee {
+    width: 50px;
+    height: 50px;
+}
+
+#icone-perso {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+
+p {
+    color: white;
+    font-size: x-large;
 }
 
 
