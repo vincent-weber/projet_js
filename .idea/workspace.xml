@@ -279,7 +279,7 @@
       <workItem from="1520238518310" duration="19792000" />
       <workItem from="1520279694291" duration="7981000" />
       <workItem from="1520323246398" duration="13465000" />
-      <workItem from="1520436785438" duration="15175000" />
+      <workItem from="1520436785438" duration="15230000" />
     </task>
     <task id="LOCAL-00001" summary="Meilleure sémantique et suppression de code inutile">
       <created>1519982047822</created>
@@ -421,11 +421,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520452216804</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="ajout de la variable session username pour retenir le nom du joueur">
+      <created>1520452282970</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1520452282970</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169494000" />
+    <option name="totallyTimeSpent" value="169549000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="26" width="1857" height="1092" extended-state="6" />
@@ -477,7 +484,8 @@
     <MESSAGE value="mode campagne fonctionnel" />
     <MESSAGE value="connexion / déconnexion fonctionnelle" />
     <MESSAGE value="Meilleure interface avec des infos et un timer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Meilleure interface avec des infos et un timer" />
+    <MESSAGE value="ajout de la variable session username pour retenir le nom du joueur" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout de la variable session username pour retenir le nom du joueur" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

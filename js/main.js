@@ -7,10 +7,15 @@ FAIT    > Les dimensions du labyrinthe sont entrées par l'utilisateur
         > Génération des murs
         > au lieu de return -1, return la case actuelle (donc la case de la victoire) et un évènement de produit quand on y arrive
         > Se débrouiller pour qu'on voit les limites de la map
+        > Connexion avec base de données
+        > Affichage des contrôles
+        > Un timer se lance quand on démarre le mode speedrun
+        > Notre meilleur temps s'update quand on le bat
 
 
-A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement avec celui-ci (pas de BD)
-        > Résoudre le bug bizarre du mode campagne
+A FAIRE > Afficher en permanence notre meilleur temps
+        > Si je me sens, pouvoir s'inscrire
+        > Afficher des infos sur le jeu quand on n'est pas connecté
 
 
  */
@@ -40,6 +45,7 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
 
     let css_table = {
         'width' : '750px',
+        'margin':0
         //'background-color' : 'white'
     };
 
@@ -103,13 +109,16 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
                     actualiserPositionPerso();
                     if (laby_actuel.case_perso.td.hasClass('case-arrivee')) {
                         if (estCampagne)
-                            agrandirLaby(laby_actuel);
+                            if (laby_actuel.hauteur !== 7 && laby_actuel.largeur !== 7)
+                                agrandirLaby(laby_actuel);
+                            else
+                                finCampagne();
                         else
                             alert('Vous avez gagné ! Essayez le mode campagne !');
                     }
                 }
             });
-        }
+        };
 
         let agrandirLaby = function (laby_actuel) {
             $('body').off('keydown');
@@ -118,8 +127,40 @@ A FAIRE > Créer un compte et faire en sorte qu'on puisse se connecter seulement
             habillerLaby(nouv_laby.hauteur, nouv_laby.largeur);
             initKeyboardEvents(nouv_laby, true);
             $('#labyrinthe').show();
-        }
+        };
 
+        let finCampagne = function () {
+            clearInterval(idTimer);
+            alert('Bravo ! Votre temps est de ' + temps + 'secondes !');
+            var temps_json = JSON.stringify(temps);
+            $.ajax({
+                url:'/json/score.php',
+                dataType: 'json',
+                type: 'POST',
+                data: 'temps='+temps
+            })
+                .done(function (data) {
+                    if (data.temps_ameliore)
+                        alert('Vous avez amélioré votre meilleur temps !')
+                    else
+                        alert('Réessayez pour battre votre meilleur temps !');
+                })
+                .fail(erreurCritique);
+        };
+
+        let temps = 0;
+        let idTimer;
+
+        let myTimer = function () {
+            $('#temps-ecoule').replaceWith('<div id="temps-ecoule">'+ '<p>' + ++temps + '</p>' + '</div>');
+        };
+
+        let demarrerTimer = function () {
+
+            idTimer = setInterval(myTimer, 1000);
+        };
+
+        $('#campagne').click(demarrerTimer());
 
         $.ajax({
             'url':'/json/est_connecte.php'
