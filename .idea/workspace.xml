@@ -4,8 +4,6 @@
     <list default="true" id="4a0a7d6c-8901-46c4-9e08-1753a03f8288" name="Default" comment="connexion / déconnexion fonctionnelle">
       <change beforePath="" afterPath="$PROJECT_DIR$/json/score.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
       <change beforePath="$PROJECT_DIR$/json/connexion.php" afterPath="$PROJECT_DIR$/json/connexion.php" />
     </list>
@@ -281,7 +279,7 @@
       <workItem from="1520238518310" duration="19792000" />
       <workItem from="1520279694291" duration="7981000" />
       <workItem from="1520323246398" duration="13465000" />
-      <workItem from="1520436785438" duration="15109000" />
+      <workItem from="1520436785438" duration="15175000" />
     </task>
     <task id="LOCAL-00001" summary="Meilleure sémantique et suppression de code inutile">
       <created>1519982047822</created>
@@ -416,11 +414,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520340481628</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Meilleure interface avec des infos et un timer">
+      <created>1520452216804</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1520452216804</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169428000" />
+    <option name="totallyTimeSpent" value="169494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="26" width="1857" height="1092" extended-state="6" />
@@ -471,7 +476,8 @@
     <MESSAGE value="ajout d'un div" />
     <MESSAGE value="mode campagne fonctionnel" />
     <MESSAGE value="connexion / déconnexion fonctionnelle" />
-    <option name="LAST_COMMIT_MESSAGE" value="connexion / déconnexion fonctionnelle" />
+    <MESSAGE value="Meilleure interface avec des infos et un timer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Meilleure interface avec des infos et un timer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

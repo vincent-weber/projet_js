@@ -9,6 +9,7 @@
         $username = $_POST['username'];
         $passwd = $_POST['password'];
 
+
     // Connexion à la base de données.
         $dsn = 'mysql:host=mysql-vincent-weber.alwaysdata.net;dbname=vincent-weber_laby';
         $pdo = new PDO($dsn, '144459_laby', 'a1b2c3');
@@ -26,6 +27,7 @@
         if ($stmt->rowCount()) {
             $result->est_connecte = true;
             $_SESSION['user_co'] = true;
+            $_SESSION['username'] = $username;
         }
         else {
             $_SESSION['user_co'] = false;
