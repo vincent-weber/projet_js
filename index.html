@@ -37,13 +37,12 @@
             <div id="div-jeu">
                 <form style="display:none" id="settings" method="post" action="/json/settings.php">
                     Choisissez les dimensions du labyrinthe :<br/>
-                    Largeur : <input type="text" name="largeur"><br/>
-                    Hauteur : <input type="text" name="hauteur"><br/>
+                    Largeur (5-50) : <input type="text" name="largeur"><br/>
+                    Hauteur (5-50): <input type="text" name="hauteur"><br/>
                     <input type="submit" id="validersettings" value="Valider">
                 </form>
-                <br/>
-                <form style="display: none" id="campagne" method="post" action="/json/campagne.php">
-                    <input type="submit" id="lancercampagne" value="Mode Campagne">
+                <form style="display: none" id="speedrun" method="post" action="/json/speedrun.php">
+                    <input type="submit" id="lancerspeedrun" value="Mode Speedrun">
                 </form>
             </div>
         </div>
@@ -51,6 +50,7 @@
 
         <div id="div-laby" style="display: none">
             <div id="div-infos">
+                <br/><br/><br/>
                 <p>Utilisez les touches ZQSD pour vous déplacer</p><br/>
                 <table id="icone-perso">
                     <tr>
@@ -66,6 +66,8 @@
             <div id="div-timer">
                 <p>TEMPS</p>
                 <div id="temps-ecoule"></div>
+                <div id="div-best"><p>RECORD</p></div>
+                <div id="temps-record"></div>
             </div>
             <div id="div-labyrinthe">
                 <table style="display:none" id="labyrinthe" class="center"></table>
