@@ -84,9 +84,8 @@ A FAIRE > Afficher en permanence notre meilleur temps
         };
 
 
-        let initKeyboardEvents = function (laby_actuel, estCampagne) {
+        let initKeyboardEvents = function (laby_actuel, estSpeedrun) {
             $('body').on('keydown', function (event) {
-                console.log(estCampagne);
                 var h_player = laby_actuel.player_hauteur;
                 var l_player = laby_actuel.player_largeur;
                 if (event.keyCode === 83 || event.keyCode === 90 || event.keyCode === 81 || event.keyCode === 68) {
@@ -108,13 +107,13 @@ A FAIRE > Afficher en permanence notre meilleur temps
                     laby_actuel.case_perso.td.removeClass('case-laby').addClass('case-perso');
                     actualiserPositionPerso();
                     if (laby_actuel.case_perso.td.hasClass('case-arrivee')) {
-                        if (estCampagne)
+                        if (estSpeedrun)
                             if (laby_actuel.hauteur !== 7 && laby_actuel.largeur !== 7)
                                 agrandirLaby(laby_actuel);
                             else
-                                finCampagne();
+                                finSpeedrun();
                         else
-                            alert('Vous avez gagné ! Essayez le mode campagne !');
+                            alert('Vous avez gagné ! Essayez le mode speedrun !');
                     }
                 }
             });
@@ -129,10 +128,9 @@ A FAIRE > Afficher en permanence notre meilleur temps
             $('#labyrinthe').show();
         };
 
-        let finCampagne = function () {
+        let finSpeedrun = function () {
             clearInterval(idTimer);
             alert('Bravo ! Votre temps est de ' + temps + 'secondes !');
-            var temps_json = JSON.stringify(temps);
             $.ajax({
                 url:'/json/score.php',
                 dataType: 'json',
@@ -140,6 +138,7 @@ A FAIRE > Afficher en permanence notre meilleur temps
                 data: 'temps='+temps
             })
                 .done(function (data) {
+                    console.log(data.best);
                     if (data.temps_ameliore)
                         alert('Vous avez amélioré votre meilleur temps !')
                     else
@@ -160,7 +159,19 @@ A FAIRE > Afficher en permanence notre meilleur temps
             idTimer = setInterval(myTimer, 1000);
         };
 
-        $('#campagne').click(demarrerTimer());
+        let recupRecord = function () {
+            $.ajax({
+                url: '/json/score.php'
+            })
+                    .done(function (data) {
+                        console.log(data.best);
+                        if (typeof(data.best) !== "undefined") {
+                            $('#temps-record').append('<p>' + data.best + '</p>');
+                        }
+
+                    })
+                    .fail(erreurCritique);
+        }
 
         $.ajax({
             'url':'/json/est_connecte.php'
@@ -169,19 +180,24 @@ A FAIRE > Afficher en permanence notre meilleur temps
                 if (data.fail_co === false) {
                     if (data.est_connecte === true) {
                         $('#settings').show();
-                        $('#campagne').show();
+                        $('#speedrun').show();
                         $('#userdeco').show();
-
+                        if (data.err_settings === true) {
+                            $('#settings').append('<p style="margin: 0">Mauvaise saisie.</p>');
+                        }
                         if (typeof(data.laby_cree) !== "undefined") {
                             $('#div-laby').show();
                             let laby_actuel = new Labyrinthe(data.hauteur, data.largeur, 0, 0, '#labyrinthe');
                             habillerLaby(data.hauteur, data.largeur);
-                            console.log(data.campagne);
-                            if (data.campagne === false)
+                            if (data.speedrun === false)
                                 initKeyboardEvents(laby_actuel, false);
 
-                            else
+                            else {
+                                recupRecord();
+                                demarrerTimer();
                                 initKeyboardEvents(laby_actuel, true);
+                            }
+
 
                             $('#labyrinthe').show();
 
@@ -240,7 +256,7 @@ A FAIRE > Afficher en permanence notre meilleur temps
                 .fail(erreurCritique);
         });
 
-        $('#campagne').submit(function () {
+        $('#speedrun').submit(function () {
             $.ajax({
                 url: $(this).attr('action'),
                 method: $(this).attr('method'),

@@ -2,7 +2,7 @@
 
     session_start();
     $result = new stdClass();
-    $_SESSION['campagne'] = true;
+    $_SESSION['speedrun'] = true;
     $_SESSION['laby_cree'] = true;
     $_SESSION['largeur'] = 5;
     $_SESSION['hauteur'] = 5;

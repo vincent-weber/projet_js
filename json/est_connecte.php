@@ -11,15 +11,20 @@
         unset($_SESSION['fail_co']);
     }
 
+    if (isset($_SESSION['err_settings'])) {
+        $result->err_settings = true;
+        unset($_SESSION['err_settings']);
+    }
+
     if (isset($_SESSION['laby_cree'])) {
         $result->laby_cree = true;
         $result->largeur = $_SESSION['largeur'];
         $result->hauteur = $_SESSION['hauteur'];
     }
-    if (isset($_SESSION['campagne']) && $_SESSION['campagne'] == true)
-        $result->campagne = true;
+    if (isset($_SESSION['speedrun']) && $_SESSION['speedrun'] == true)
+        $result->speedrun = true;
     else {
-        $result->campagne = false;
+        $result->speedrun = false;
     }
 
     header('Cache-Control: no-cache, must-revalidate');

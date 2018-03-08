@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4a0a7d6c-8901-46c4-9e08-1753a03f8288" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
       <change beforePath="$PROJECT_DIR$/json/campagne.php" afterPath="$PROJECT_DIR$/json/speedrun.php" />
       <change beforePath="$PROJECT_DIR$/json/est_connecte.php" afterPath="$PROJECT_DIR$/json/est_connecte.php" />
@@ -288,7 +286,7 @@
       <workItem from="1520279694291" duration="7981000" />
       <workItem from="1520323246398" duration="13465000" />
       <workItem from="1520436785438" duration="16469000" />
-      <workItem from="1520497731436" duration="9951000" />
+      <workItem from="1520497731436" duration="10010000" />
     </task>
     <task id="LOCAL-00001" summary="Meilleure sémantique et suppression de code inutile">
       <created>1519982047822</created>
@@ -444,11 +442,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520452318225</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Ajout d'un div pour afficher son record personnel">
+      <created>1520510586540</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1520510586540</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180739000" />
+    <option name="totallyTimeSpent" value="180798000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="26" width="1857" height="1092" extended-state="6" />
@@ -502,7 +507,8 @@
     <MESSAGE value="Meilleure interface avec des infos et un timer" />
     <MESSAGE value="ajout de la variable session username pour retenir le nom du joueur" />
     <MESSAGE value="Ajout d'un timer pour le mode speedrun qui update notre meilleur temps si on le bat" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout d'un timer pour le mode speedrun qui update notre meilleur temps si on le bat" />
+    <MESSAGE value="Ajout d'un div pour afficher son record personnel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout d'un div pour afficher son record personnel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
