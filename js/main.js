@@ -173,10 +173,19 @@ A FAIRE > Afficher en permanence notre meilleur temps
                     .fail(erreurCritique);
         }
 
+        // $.ajax({
+        //     url: '/json/creation_bd.php'
+        // })
+        //     .done(function (data) {
+        //         if (data.bool_error)
+        //             console.log(data.error);
+        //     });
+
         $.ajax({
             'url':'/json/est_connecte.php'
         })
             .done(function (data) {
+                console.log(data);
                 if (data.fail_co === false) {
                     if (data.est_connecte === true) {
                         $('#settings').show();
@@ -229,6 +238,7 @@ A FAIRE > Afficher en permanence notre meilleur temps
 
                 })
                 .fail(erreurCritique);
+            return false;
         });
 
         $('#userdeco').submit(function () {
@@ -254,6 +264,7 @@ A FAIRE > Afficher en permanence notre meilleur temps
                     window.location.reload(true);
                 })
                 .fail(erreurCritique);
+            return false;
         });
 
         $('#speedrun').submit(function () {
@@ -266,6 +277,7 @@ A FAIRE > Afficher en permanence notre meilleur temps
                     window.location.reload(true);
                 })
                 .fail(erreurCritique);
+            return false;
         })
     })
 })();

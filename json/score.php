@@ -9,10 +9,13 @@ try {
     if (isset($_SESSION['username']))
         $result->user = $_SESSION['username'];
 
-    $dsn = 'mysql:host=mysql-vincent-weber.alwaysdata.net;dbname=vincent-weber_laby';
-    $pdo = new PDO($dsn, '144459_laby', 'a1b2c3');
+//    $dsn = 'mysql:host=mysql-vincent-weber.alwaysdata.net;dbname=vincent-weber_laby';
+//    $pdo = new PDO($dsn, '144459_laby', 'a1b2c3');
+
+    $dsn = 'sqlite:./sql.db';
+    $pdo = new PDO($dsn);
     // Codage de caractères.
-    $pdo->exec('SET CHARACTER SET utf8');
+    //$pdo->exec('SET CHARACTER SET utf8');
     // Gestion des erreurs sous forme d'exceptions.
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -26,8 +29,7 @@ try {
 
     $stmt->execute();
     if (isset($_POST['temps'])) {
-        if ($stmt->rowCount()) {
-            $best = $stmt->fetch(PDO::FETCH_OBJ);
+        if ($best = $stmt->fetch(PDO::FETCH_OBJ)) {
             if ($best->BEST > $result->temps) {
                 $result->temps_ameliore = true;
                 $stmt2->execute();
