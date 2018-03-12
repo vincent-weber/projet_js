@@ -21,19 +21,15 @@
 
         <!-- Add your site or application content here -->
         <div id="div-haut">
-            <div id="div-co">
-                <form style="display:none" id = "userco" method="post" action="/json/connexion.php">
-                    <input type="text" name="username"><br/>
-                    <input type="password" name="password"><br/>
-                    <input type="submit" id="validerco" value="Se connecter">
-                </form>
 
-                <form style="display:none" id = "userdeco" method="post" action="/json/deconnexion.php">
-                    Vous êtes connecté !<br/>
-                    <input id="button-deco" type="submit" name="validerdeco" value="Se déconnecter">
+            <div id="div-insc">
+                <form style="display: none" id="userinsc" method="post" action="/json/inscription.php">
+                    <label>Pseudo</label> <input type="text" name="username"><br/>
+                    <label>Mot de passe</label> <input type="password" name="password"><br/>
+                    <label>Email</label> <input type="email" name="email"><br/>
+                    <label><input type="submit" id="validerinsc" value="S'inscrire"></label>
                 </form>
             </div>
-
             <div id="div-jeu">
                 <form style="display:none" id="settings" method="post" action="/json/settings.php">
                     Choisissez les dimensions du labyrinthe :<br/>
@@ -45,6 +41,23 @@
                     <input type="submit" id="lancerspeedrun" value="Mode Speedrun">
                 </form>
             </div>
+            <div id="div-co">
+                <form style="display:none" id = "userco" method="post" action="/json/connexion.php">
+                    <label>Pseudo</label> <input type="text" name="username"><br/>
+                    <label>Mot de passe</label> <input type="password" name="password"><br/>
+                    <label><input type="submit" id="validerco" value="Se connecter"></label>
+                </form>
+
+                <form style="display:none" id = "userdeco" method="post" action="/json/deconnexion.php">
+                    Vous êtes connecté !<br/>
+                    <input id="button-deco" type="submit" name="validerdeco" value="Se déconnecter">
+                </form>
+            </div>
+            <div id="div-bienvenue">
+                <p style="color:black">Bienvenue sur A-maze-ing ! Entraînez-vous en choisissant les dimensions du labyrinthe, puis essayez le mode speedrun pour entrer dans le
+                classement des meilleurs joueurs ! Inscrivez-vous dès maintenant !</p>
+            </div>
+
         </div>
 
 

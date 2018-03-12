@@ -1,4 +1,10 @@
 <?php
+
+    if (!class_exists('UsersDataBase'))
+    {
+        require 'bd_users.php';
+    }
+
     session_start();
     $result = new stdClass();
     $result->est_connecte = false;
@@ -8,18 +14,8 @@
 
         $username = $_POST['username'];
         $passwd = $_POST['password'];
-
-
-    // Connexion à la base de données.
-        //$dsn = 'mysql:host=mysql-vincent-weber.alwaysdata.net;dbname=vincent-weber_laby';
-        //$pdo = new PDO($dsn, '144459_laby', 'a1b2c3');
-        $dsn = 'sqlite:./sql.db';
-        $pdo = new PDO($dsn);
-
-    // Codage de caractères.
-       // $pdo->exec('SET CHARACTER SET utf8');
-    // Gestion des erreurs sous forme d'exceptions.
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $usersDataBase = new UsersDataBase();
+        $pdo = $usersDataBase->connexionBD();
 
         $connectCheckQuery = 'SELECT * FROM USER WHERE NAME = :username AND PASSWORD = :passwd';
         $stmt = $pdo->prepare($connectCheckQuery);
@@ -41,15 +37,6 @@
     // Affichage de l'erreur.
         $result->error = 'Erreur : ' . $e->getMessage();
     }
-
-    /*if(isset($_POST['username']) && isset($_POST['password'])) {
-        $result->est_connecte = true;
-        $_SESSION['user_co'] = true;
-    }
-
-    else {
-        $_SESSION['user_co'] = false;
-    }*/
 
     header('Cache-Control: no-cache, must-revalidate');
     header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');

@@ -59,7 +59,7 @@ let Labyrinthe;
                     }
                 }
             }
-        }
+        };
 
 
 
@@ -69,25 +69,25 @@ let Labyrinthe;
             return ((self.tab[h][l].enHaut.enHaut !== null && self.tab[h][l].enHaut.enHaut.td.hasClass('case-soluce')) ||
             (self.tab[h][l].enHaut.aGauche !== null && self.tab[h][l].enHaut.aGauche.td.hasClass('case-soluce'))       ||
             (self.tab[h][l].enHaut.aDroite !== null && self.tab[h][l].enHaut.aDroite.td.hasClass('case-soluce')))
-        }
+        };
 
         let pasAGauche = function (h, l) {
             return ((self.tab[h][l].aGauche.enHaut !== null && self.tab[h][l].aGauche.enHaut.td.hasClass('case-soluce')) ||
             (self.tab[h][l].aGauche.aGauche !== null && self.tab[h][l].aGauche.aGauche.td.hasClass('case-soluce'))       ||
             (self.tab[h][l].aGauche.enBas !== null && self.tab[h][l].aGauche.enBas.td.hasClass('case-soluce')))
-        }
+        };
 
         let pasEnBas = function (h, l) {
             return ((self.tab[h][l].enBas.aGauche !== null && self.tab[h][l].enBas.aGauche.td.hasClass('case-soluce')) ||
             (self.tab[h][l].enBas.enBas !== null && self.tab[h][l].enBas.enBas.td.hasClass('case-soluce'))             ||
             (self.tab[h][l].enBas.aDroite !== null && self.tab[h][l].enBas.aDroite.td.hasClass('case-soluce')))
-        }
+        };
 
         let pasADroite = function (h, l) {
             return ((self.tab[h][l].aDroite.enHaut !== null && self.tab[h][l].aDroite.enHaut.td.hasClass('case-soluce')) ||
             (self.tab[h][l].aDroite.aDroite !== null && self.tab[h][l].aDroite.aDroite.td.hasClass('case-soluce'))       ||
             (self.tab[h][l].aDroite.enBas !== null   && self.tab[h][l].aDroite.enBas.td.hasClass('case-soluce')))
-        }
+        };
 
 
 
@@ -101,7 +101,7 @@ let Labyrinthe;
                 self.tab[h_Gauche][l_Gauche].td.addClass('case-soluce');
                 return defCaseSoluce(h_Gauche, l_Gauche, 'gauche');
             }
-        }
+        };
 
         let randomHautBas = function (h_Haut, l_Haut, h_Bas, l_Bas) {
             var r_hb = Math.random();
@@ -113,7 +113,7 @@ let Labyrinthe;
                 self.tab[h_Bas][l_Bas].td.addClass('case-soluce');
                 return defCaseSoluce(h_Bas, l_Bas, 'bas');
             }
-        }
+        };
 
         let randomHautDroite = function (h_Haut, l_Haut, h_Droite, l_Droite) {
             var r_hd = Math.random();
@@ -125,7 +125,7 @@ let Labyrinthe;
                 self.tab[h_Droite][l_Droite].td.addClass('case-soluce');
                 return defCaseSoluce(h_Droite, l_Droite, 'droite');
             }
-        }
+        };
 
         let randomBasDroite = function (h_Bas, l_Bas, h_Droite, l_Droite) {
             var r_bd = Math.random();
@@ -137,7 +137,7 @@ let Labyrinthe;
                 self.tab[h_Droite][l_Droite].td.addClass('case-soluce');
                 return defCaseSoluce(h_Droite, l_Droite, 'droite');
             }
-        }
+        };
 
         let randomGaucheDroite = function (h_Gauche, l_Gauche, h_Droite, l_Droite) {
             var r_gd = Math.random();
@@ -149,7 +149,7 @@ let Labyrinthe;
                 self.tab[h_Droite][l_Droite].td.addClass('case-soluce');
                 return defCaseSoluce(h_Droite, l_Droite, 'droite');
             }
-        }
+        };
 
         let randomGaucheBas = function (h_Gauche, l_Gauche, h_Bas, l_Bas) {
             var r_gb = Math.random();
@@ -161,7 +161,7 @@ let Labyrinthe;
                 self.tab[h_Bas][l_Bas].td.addClass('case-soluce');
                 return defCaseSoluce(h_Bas, l_Bas, 'bas');
             }
-        }
+        };
 
         let randomHautGaucheBas = function (h_Haut, l_Haut, h_Gauche, l_Gauche, h_Bas, l_Bas) {
             var r_hgb = Math.random();
@@ -178,7 +178,7 @@ let Labyrinthe;
                 return defCaseSoluce(h_Bas, l_Bas, 'bas');
             }
 
-        }
+        };
 
         let randomHautGaucheDroite = function (h_Haut, l_Haut, h_Gauche, l_Gauche, h_Droite, l_Droite) {
             var r_hgd = Math.random();
@@ -194,7 +194,7 @@ let Labyrinthe;
                 self.tab[h_Droite][l_Droite].td.addClass('case-soluce');
                 return defCaseSoluce(h_Droite, l_Droite, 'droite');
             }
-        }
+        };
 
         let randomHautBasDroite = function (h_Haut, l_Haut, h_Bas, l_Bas, h_Droite, l_Droite) {
             var r_hbd = Math.random();
@@ -210,7 +210,7 @@ let Labyrinthe;
                 self.tab[h_Droite][l_Droite].td.addClass('case-soluce');
                 return defCaseSoluce(h_Droite, l_Droite, 'droite');
             }
-        }
+        };
 
         let randomGaucheBasDroite = function (h_Gauche, l_Gauche, h_Bas, l_Bas, h_Droite, l_Droite) {
             var r_gbd = Math.random();
@@ -226,7 +226,7 @@ let Labyrinthe;
                 self.tab[h_Droite][l_Droite].td.addClass('case-soluce');
                 return defCaseSoluce(h_Droite, l_Droite, 'droite');
             }
-        }
+        };
 
 
 
@@ -471,7 +471,7 @@ let Labyrinthe;
                 }
             }
             return self.case_soluce;
-        }
+        };
 
         let caseMauvaisChemin = function (h, l) {
             var nbCasesCheminAdj = 0;
@@ -491,7 +491,7 @@ let Labyrinthe;
                 return true;
             }
             return false;
-        }
+        };
 
         let defCasesMauvaisChemin = function () {
             var count = 0;
@@ -506,7 +506,7 @@ let Labyrinthe;
                 }
             }
             return count;
-        }
+        };
 
         let defCasesMur = function () {
             for (let h = 0 ; h < self.hauteur ; ++h) {
@@ -517,7 +517,7 @@ let Labyrinthe;
                         self.tab[h][l].td.addClass('case-mur');
                 }
             }
-        }
+        };
         
 
 
@@ -528,7 +528,6 @@ let Labyrinthe;
             for (let j = 0 ; j < self.largeur ; ++j) {
                 let td=$('<td />');
                 td.attr('id', String(i) + String(j));
-                td.click(self.clickchange);
                 self.tab[i][j] = new Case(trActu, td);
 
                 if (i === self.h_debut && j === self.l_debut) {

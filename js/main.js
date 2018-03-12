@@ -130,7 +130,7 @@ A FAIRE > Afficher en permanence notre meilleur temps
 
         let finSpeedrun = function () {
             clearInterval(idTimer);
-            alert('Bravo ! Votre temps est de ' + temps + 'secondes !');
+            alert('Bravo ! Votre temps est de ' + temps + ' secondes !');
             $.ajax({
                 url:'/json/score.php',
                 dataType: 'json',
@@ -186,8 +186,11 @@ A FAIRE > Afficher en permanence notre meilleur temps
         })
             .done(function (data) {
                 console.log(data);
+
                 if (data.fail_co === false) {
                     if (data.est_connecte === true) {
+                        $('#div-insc').hide();
+                        $('#div-bienvenue').hide();
                         $('#settings').show();
                         $('#speedrun').show();
                         $('#userdeco').show();
@@ -214,7 +217,18 @@ A FAIRE > Afficher en permanence notre meilleur temps
                     }
                     else {
                         $('#div-jeu').hide();
+                        $('#userinsc').show();
+                        $('#div-bienvenue').show();
                         $('#userco').show();
+                        if (typeof(data.err_saisie) !== "undefined")
+                            $('#div-insc').append(data.err_saisie);
+                        if (typeof(data.pseudo_pris) !== "undefined")
+                            $('#div-insc').append(data.pseudo_pris);
+                        if(typeof(data.email_pris) !== "undefined")
+                            $('#div-insc').append(data.email_pris);
+
+                        if (data.insc_enreg)
+                            $('#div-insc').append(data.insc_enreg);
                     }
                 }
                 else {
@@ -226,6 +240,20 @@ A FAIRE > Afficher en permanence notre meilleur temps
 
             })
             .fail(erreurCritique);
+
+        $('#userinsc').submit(function () {
+            $.ajax({
+                url:$(this).attr('action'),
+                method:$(this).attr('method'),
+                data:$(this).serialize()
+            })
+                .done(function (data) {
+                    window.location.reload(true);
+
+                })
+                .fail(erreurCritique);
+            return false;
+        });
 
         $('#userco').submit(function () {
             $.ajax({

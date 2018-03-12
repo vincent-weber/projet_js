@@ -17,10 +17,11 @@ try {
                         "`ID` INTEGER PRIMARY KEY AUTOINCREMENT, ".
                         "`NAME` varchar(32) NOT NULL, ".
                         "`PASSWORD` varchar(32) DEFAULT NULL, ".
+                        "`EMAIL` varchar(64) DEFAULT NULL, ".
                         "`BEST` int(32) DEFAULT NULL".
 ")");
 
-    $db->exec("INSERT INTO `USER` (`NAME`, `PASSWORD`, `BEST`) VALUES ('adminlaby', '".md5('mdplaby')."', 10);");
+    $db->exec("INSERT INTO `USER` (`NAME`, `PASSWORD`, `BEST`) VALUES ('adminlaby', '".md5('mdplaby')."', 33);");
 }
 catch (PDOException $e) {
     // Affichage de l'erreur.

@@ -3,6 +3,18 @@
     $result = new stdClass();
     $result->fail_co = false;
 
+    if (isset($_SESSION['err_saisie']))
+        $result->err_saisie = $_SESSION['err_saisie'];
+
+    if (isset($_SESSION['pseudo_pris']))
+        $result->pseudo_pris = $_SESSION['pseudo_pris'];
+
+    if (isset($_SESSION['email_pris']))
+        $result->email_pris = $_SESSION['email_pris'];
+
+    if (isset($_SESSION['insc_enreg']))
+        $result->insc_enreg = $_SESSION['insc_enreg'];
+
     if (isset($_SESSION['user_co'])) {
         $result->est_connecte = $_SESSION['user_co'];
     }

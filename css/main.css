@@ -41,11 +41,34 @@ html, body {
     position: relative;
 }
 
+#div-insc {
+    background-color: red;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    margin-right: 20px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font: 15px arial, sans-serif;
+    font-size: x-large;
+    float: left;
+}
+
+#div-bienvenue {
+    margin: 0 auto;
+    margin-top: 0px;
+    width:500px;
+}
+
 #div-co {
     background-color: red;
-    margin-top: 100px;
+    margin-top: 40px;
     margin-bottom: 40px;
     margin-right: 40px;
+    margin-left: 20px;
     padding-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
@@ -108,6 +131,11 @@ html, body {
     height: 50px;
 }
 
+label {
+    display:block;
+    float:left;
+    width:150px;
+}
 
 
 
