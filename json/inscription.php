@@ -47,8 +47,8 @@
             $stmt = $pdo->prepare($verifPseudo);
             $stmt->bindValue('username', $username, PDO::PARAM_STR);
             $stmt->execute();
-            //if ($stmt->fetch(PDO::FETCH_OBJ))
-            if ($stmt->rowCount())
+            if ($stmt->fetch(PDO::FETCH_OBJ))
+            //if ($stmt->rowCount())
                 return true;
             return false;
         }
@@ -66,6 +66,7 @@
             $verifEmail = 'SELECT EMAIL FROM USER WHERE EMAIL = :email';
             $stmt = $pdo->prepare($verifEmail);
             $stmt->bindValue('email', $email, PDO::PARAM_STR);
+            $stmt->execute();
             if ($stmt->fetch(PDO::FETCH_OBJ))
                 return true;
             return false;

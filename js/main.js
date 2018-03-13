@@ -1,6 +1,4 @@
-/*Classe labyrinthe
-
-FAIT    > Les dimensions du labyrinthe sont entrées par l'utilisateur
+/*FAIT  > Les dimensions du labyrinthe sont entrées par l'utilisateur
         > Pouvoir se déplacer dans le labyrinthe au clavier
         > Génération aléatoire de la solution du laby
         > On démarre au début (en haut à gauche et on gagne quand on arrive à la case d'arrivée aléatoire
@@ -11,13 +9,15 @@ FAIT    > Les dimensions du labyrinthe sont entrées par l'utilisateur
         > Affichage des contrôles
         > Un timer se lance quand on démarre le mode speedrun
         > Notre meilleur temps s'update quand on le bat
-
-
-A FAIRE > Afficher en permanence notre meilleur temps
-        > Si je me sens, pouvoir s'inscrire
+        > On peut s'inscrire
         > Afficher des infos sur le jeu quand on n'est pas connecté
+        > Afficher en permanence notre meilleur temps
 
 
+A FAIRE > Essayer de rendre le site responsive
+        > Rendre le code plus simple à lire, opti et propre
+        > Réinit la BD et arrêter le mode speedrun à 50*50 (ou moins ?)
+        > Mettre le site en ligne
  */
 
 (function() {
@@ -163,14 +163,14 @@ A FAIRE > Afficher en permanence notre meilleur temps
             $.ajax({
                 url: '/json/score.php'
             })
-                    .done(function (data) {
-                        console.log(data.best);
-                        if (typeof(data.best) !== "undefined") {
-                            $('#temps-record').append('<p>' + data.best + '</p>');
-                        }
+            .done(function (data) {
+                console.log(data.best);
+                if (typeof(data.best) !== "undefined") {
+                    $('#temps-record').append('<p>' + data.best + '</p>');
+                }
 
-                    })
-                    .fail(erreurCritique);
+            })
+            .fail(erreurCritique);
         }
 
         // $.ajax({
@@ -180,6 +180,25 @@ A FAIRE > Afficher en permanence notre meilleur temps
         //         if (data.bool_error)
         //             console.log(data.error);
         //     });
+
+        let afficherRecords = function () {
+            $.ajax({
+                url:'/json/meilleurs_scores.php'
+            })
+                .done(function (data) {
+                    console.log(data);
+                    if (typeof(data.meilleursTemps) !== "undefined") {
+                        for (let i = 0 ; i < data.meilleursTemps.length ; ++i) {
+                            let trActu = $('<tr />')
+                            trActu.append('<td class="case-classement">' + '<p>'+ (i+1) +'</p>' + '</td>');
+                            trActu.append('<td class="case-classement">' + '<p>' + data.meilleursTemps[i].NAME + '</p>' + '</td>');
+                            trActu.append('<td class="case-classement">' + '<p>' + data.meilleursTemps[i].BEST + '</p>' + '</td>');
+                            $('#classement').append(trActu);
+                        }
+                        $('.case-classement').css('border', 'solid 5px white');
+                    }
+                })
+        }
 
         $.ajax({
             'url':'/json/est_connecte.php'
@@ -201,10 +220,14 @@ A FAIRE > Afficher en permanence notre meilleur temps
                             $('#div-laby').show();
                             let laby_actuel = new Labyrinthe(data.hauteur, data.largeur, 0, 0, '#labyrinthe');
                             habillerLaby(data.hauteur, data.largeur);
-                            if (data.speedrun === false)
+                            if (data.speedrun === false) {
+                                $('#div-timer').hide();
                                 initKeyboardEvents(laby_actuel, false);
+                            }
 
                             else {
+                                $('#div-timer').show();
+                                afficherRecords();
                                 recupRecord();
                                 demarrerTimer();
                                 initKeyboardEvents(laby_actuel, true);
@@ -235,6 +258,7 @@ A FAIRE > Afficher en permanence notre meilleur temps
                     $('#userco').append('<p>Identifiants incorrects</p>');
                     $('#div-jeu').hide();
                     $('#userco').show();
+                    $('#userinsc').show();
                 }
 
 
@@ -242,6 +266,7 @@ A FAIRE > Afficher en permanence notre meilleur temps
             .fail(erreurCritique);
 
         $('#userinsc').submit(function () {
+            //console.log(data);
             $.ajax({
                 url:$(this).attr('action'),
                 method:$(this).attr('method'),
