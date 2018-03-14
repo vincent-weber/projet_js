@@ -23,30 +23,10 @@ A FAIRE > Essayer de rendre le site responsive
 (function() {
     "use strict";
 
-    let css_perso = {
-        'background-color' : 'blue',
-        //'border' : 'solid 2px blue'
-    };
-
-    let css_case = {
-        'background-color' : 'white',
-        //'border' : 'solid 1px white'
-    };
-
-    let css_mur = {
-        'background-color' : 'black',
-        //'border' : 'solid 2px black'
-    };
-
-    let css_arrivee = {
-        'background-color' : 'yellow',
-        //'border' : 'solid 2px yellow'
-    };
-
     let css_table = {
-        'width' : '750px',
+        'width' : '50%',
+        'height':'50%',
         'margin':0
-        //'background-color' : 'white'
     };
 
     let css_center = {
@@ -66,28 +46,24 @@ A FAIRE > Essayer de rendre le site responsive
 
             $('#labyrinthe').css(css_table).css('height', 750*longueur/largeur);
             $('#labyrinthe.center').css(css_center);
-            $(".case-laby").css(css_case);
-            //$(".case-soluce").css(css_case);
-            $(".case-arrivee").css(css_arrivee);
-            //$(".case-mauvais-chemin").css(css_case);
-            $(".case-mur").css(css_mur);
-            $(".case-perso").css(css_perso);
+            $(".case-laby").css('background-color','white');
+            $(".case-arrivee").css('background-color','yellow');
+            $(".case-mur").css('background-color','black');
+            $(".case-perso").css('background-color','blue');
         };
 
         let actualiserPositionPerso = function () {
-            $(".case-laby").css(css_case);
-            //$(".case-soluce").css(css_case);
-            $(".case-arrivee").css(css_arrivee);
-            //$(".case-mauvais-chemin").css(css_case);
-            $(".case-mur").css(css_mur);
-            $(".case-perso").css(css_perso);
+            $(".case-laby").css('background-color','white');
+            $(".case-arrivee").css('background-color','yellow');
+            $(".case-mur").css('background-color','black');
+            $(".case-perso").css('background-color','blue');
         };
 
 
         let initKeyboardEvents = function (laby_actuel, estSpeedrun) {
             $('body').on('keydown', function (event) {
-                var h_player = laby_actuel.player_hauteur;
-                var l_player = laby_actuel.player_largeur;
+                let h_player = laby_actuel.player_hauteur;
+                let l_player = laby_actuel.player_largeur;
                 if (event.keyCode === 83 || event.keyCode === 90 || event.keyCode === 81 || event.keyCode === 68) {
                     if (event.keyCode === 83      && h_player !== laby_actuel.hauteur-1 && !laby_actuel.tab[h_player+1][l_player].td.hasClass('case-mur'))  //S
                         laby_actuel.player_hauteur++;
@@ -108,7 +84,7 @@ A FAIRE > Essayer de rendre le site responsive
                     actualiserPositionPerso();
                     if (laby_actuel.case_perso.td.hasClass('case-arrivee')) {
                         if (estSpeedrun)
-                            if (laby_actuel.hauteur !== 7 && laby_actuel.largeur !== 7)
+                            if (laby_actuel.hauteur !== 40 && laby_actuel.largeur !== 40)
                                 agrandirLaby(laby_actuel);
                             else
                                 finSpeedrun();
@@ -138,7 +114,6 @@ A FAIRE > Essayer de rendre le site responsive
                 data: 'temps='+temps
             })
                 .done(function (data) {
-                    console.log(data.best);
                     if (data.temps_ameliore)
                         alert('Vous avez amélioré votre meilleur temps !')
                     else
@@ -171,7 +146,7 @@ A FAIRE > Essayer de rendre le site responsive
 
             })
             .fail(erreurCritique);
-        }
+        };
 
         // $.ajax({
         //     url: '/json/creation_bd.php'
@@ -189,7 +164,7 @@ A FAIRE > Essayer de rendre le site responsive
                     console.log(data);
                     if (typeof(data.meilleursTemps) !== "undefined") {
                         for (let i = 0 ; i < data.meilleursTemps.length ; ++i) {
-                            let trActu = $('<tr />')
+                            let trActu = $('<tr />');
                             trActu.append('<td class="case-classement">' + '<p>'+ (i+1) +'</p>' + '</td>');
                             trActu.append('<td class="case-classement">' + '<p>' + data.meilleursTemps[i].NAME + '</p>' + '</td>');
                             trActu.append('<td class="case-classement">' + '<p>' + data.meilleursTemps[i].BEST + '</p>' + '</td>');
@@ -198,7 +173,7 @@ A FAIRE > Essayer de rendre le site responsive
                         $('.case-classement').css('border', 'solid 5px white');
                     }
                 })
-        }
+        };
 
         $.ajax({
             'url':'/json/est_connecte.php'
@@ -266,7 +241,6 @@ A FAIRE > Essayer de rendre le site responsive
             .fail(erreurCritique);
 
         $('#userinsc').submit(function () {
-            //console.log(data);
             $.ajax({
                 url:$(this).attr('action'),
                 method:$(this).attr('method'),

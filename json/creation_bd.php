@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: w16002657
- * Date: 12/03/18
- * Time: 14:19
- */
 session_start();
 $result = new stdClass();
 $db = new PDO('sqlite:./sql.db');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try {
-    //$db->exec('SET CHARACTER SET utf8');
     $db->exec('DROP TABLE IF EXISTS USER');
     $db->exec("CREATE TABLE `USER` (".
                         "`ID` INTEGER PRIMARY KEY AUTOINCREMENT, ".
@@ -21,7 +14,7 @@ try {
                         "`BEST` int(32) DEFAULT NULL".
 ")");
 
-    $db->exec("INSERT INTO `USER` (`NAME`, `PASSWORD`, `BEST`) VALUES ('adminlaby', '".md5('mdplaby')."', 33);");
+    $db->exec("INSERT INTO `USER` (`NAME`, `PASSWORD`, `BEST`) VALUES ('adminlaby', '".md5('mdplaby')."', 9999);");
 }
 catch (PDOException $e) {
     // Affichage de l'erreur.

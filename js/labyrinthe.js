@@ -92,9 +92,9 @@ let Labyrinthe;
 
 
         let randomHautGauche = function (h_Haut, l_Haut, h_Gauche, l_Gauche) {
-            var r_hg = Math.random();
+            let r_hg = Math.random();
             if (r_hg < 0.5) {
-                self.tab[h_Haut][l_Haut].td.addClass('case-soluce')
+                self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
             }
             else {
@@ -104,7 +104,7 @@ let Labyrinthe;
         };
 
         let randomHautBas = function (h_Haut, l_Haut, h_Bas, l_Bas) {
-            var r_hb = Math.random();
+            let r_hb = Math.random();
             if (r_hb < 0.5) {
                 self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
@@ -116,7 +116,7 @@ let Labyrinthe;
         };
 
         let randomHautDroite = function (h_Haut, l_Haut, h_Droite, l_Droite) {
-            var r_hd = Math.random();
+            let r_hd = Math.random();
             if (r_hd < 0.5) {
                 self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
@@ -128,7 +128,7 @@ let Labyrinthe;
         };
 
         let randomBasDroite = function (h_Bas, l_Bas, h_Droite, l_Droite) {
-            var r_bd = Math.random();
+            let r_bd = Math.random();
             if (r_bd < 0.5) {
                 self.tab[h_Bas][l_Bas].td.addClass('case-soluce');
                 return defCaseSoluce(h_Bas, l_Bas, 'bas');
@@ -140,7 +140,7 @@ let Labyrinthe;
         };
 
         let randomGaucheDroite = function (h_Gauche, l_Gauche, h_Droite, l_Droite) {
-            var r_gd = Math.random();
+            let r_gd = Math.random();
             if (r_gd < 0.5) {
                 self.tab[h_Gauche][l_Gauche].td.addClass('case-soluce');
                 return defCaseSoluce(h_Gauche, l_Gauche, 'gauche');
@@ -152,7 +152,7 @@ let Labyrinthe;
         };
 
         let randomGaucheBas = function (h_Gauche, l_Gauche, h_Bas, l_Bas) {
-            var r_gb = Math.random();
+            let r_gb = Math.random();
             if (r_gb < 0.5) {
                 self.tab[h_Gauche][l_Gauche].td.addClass('case-soluce');
                 return defCaseSoluce(h_Gauche, l_Gauche, 'gauche');
@@ -164,7 +164,7 @@ let Labyrinthe;
         };
 
         let randomHautGaucheBas = function (h_Haut, l_Haut, h_Gauche, l_Gauche, h_Bas, l_Bas) {
-            var r_hgb = Math.random();
+            let r_hgb = Math.random();
             if (r_hgb < 0.33) {
                 self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
@@ -181,7 +181,7 @@ let Labyrinthe;
         };
 
         let randomHautGaucheDroite = function (h_Haut, l_Haut, h_Gauche, l_Gauche, h_Droite, l_Droite) {
-            var r_hgd = Math.random();
+            let r_hgd = Math.random();
             if (r_hgd < 0.33) {
                 self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
@@ -197,7 +197,7 @@ let Labyrinthe;
         };
 
         let randomHautBasDroite = function (h_Haut, l_Haut, h_Bas, l_Bas, h_Droite, l_Droite) {
-            var r_hbd = Math.random();
+            let r_hbd = Math.random();
             if (r_hbd < 0.33) {
                 self.tab[h_Haut][l_Haut].td.addClass('case-soluce');
                 return defCaseSoluce(h_Haut, l_Haut, 'haut');
@@ -213,7 +213,7 @@ let Labyrinthe;
         };
 
         let randomGaucheBasDroite = function (h_Gauche, l_Gauche, h_Bas, l_Bas, h_Droite, l_Droite) {
-            var r_gbd = Math.random();
+            let r_gbd = Math.random();
             if (r_gbd < 0.33) {
                 self.tab[h_Gauche][l_Gauche].td.addClass('case-soluce');
                 return defCaseSoluce(h_Gauche, l_Gauche, 'gauche');
@@ -474,7 +474,7 @@ let Labyrinthe;
         };
 
         let caseMauvaisChemin = function (h, l) {
-            var nbCasesCheminAdj = 0;
+            let nbCasesCheminAdj = 0;
             if (!self.tab[h][l].td.hasClass('case-mauvais-chemin') && self.tab[h][l].enHaut !== null &&
                 (self.tab[h-1][l].td.hasClass('case-mauvais-chemin') || self.tab[h-1][l].td.hasClass('case-soluce')))
                 ++nbCasesCheminAdj;
@@ -487,14 +487,12 @@ let Labyrinthe;
             if (!self.tab[h][l].td.hasClass('case-mauvais-chemin') && self.tab[h][l].aDroite !== null &&
                 (self.tab[h][l+1].td.hasClass('case-mauvais-chemin') || self.tab[h][l+1].td.hasClass('case-soluce')))
                 ++nbCasesCheminAdj;
-            if (nbCasesCheminAdj === 1) {
-                return true;
-            }
-            return false;
+            return nbCasesCheminAdj === 1;
+
         };
 
         let defCasesMauvaisChemin = function () {
-            var count = 0;
+            let count = 0;
             for (let h = 0 ; h < self.hauteur ; ++h) {
                 for (let l = 0 ; l < self.largeur ; ++l) {
                     if (self.tab[h][l].td.hasClass('case-perso') || self.tab[h][l].td.hasClass('case-arrivee'))
@@ -553,13 +551,6 @@ let Labyrinthe;
         while (count > 0);
 
         defCasesMur();
-        // supprMursInutiles();
-        //
-        // do {
-        //     var count2 = 0;
-        //     count2 = supprMursRestants();
-        // }
-        // while (count2 > 0);
         //console.log(self);
     }
 }) ();

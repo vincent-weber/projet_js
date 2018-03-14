@@ -10,7 +10,6 @@ let Case;
         this.aGauche = null;
         this.enBas = null;
         this.aDroite = null;
-        let self = this;
 
     }
 
