@@ -1,25 +1,3 @@
-/*FAIT  > Les dimensions du labyrinthe sont entrées par l'utilisateur
-        > Pouvoir se déplacer dans le labyrinthe au clavier
-        > Génération aléatoire de la solution du laby
-        > On démarre au début (en haut à gauche et on gagne quand on arrive à la case d'arrivée aléatoire
-        > Génération des murs
-        > au lieu de return -1, return la case actuelle (donc la case de la victoire) et un évènement de produit quand on y arrive
-        > Se débrouiller pour qu'on voit les limites de la map
-        > Connexion avec base de données
-        > Affichage des contrôles
-        > Un timer se lance quand on démarre le mode speedrun
-        > Notre meilleur temps s'update quand on le bat
-        > On peut s'inscrire
-        > Afficher des infos sur le jeu quand on n'est pas connecté
-        > Afficher en permanence notre meilleur temps
-
-
-A FAIRE > Essayer de rendre le site responsive
-        > Rendre le code plus simple à lire, opti et propre
-        > Réinit la BD et arrêter le mode speedrun à 50*50 (ou moins ?)
-        > Mettre le site en ligne
- */
-
 (function() {
     "use strict";
 
@@ -148,6 +126,7 @@ A FAIRE > Essayer de rendre le site responsive
             .fail(erreurCritique);
         };
 
+
         // $.ajax({
         //     url: '/json/creation_bd.php'
         // })
@@ -161,7 +140,6 @@ A FAIRE > Essayer de rendre le site responsive
                 url:'/json/meilleurs_scores.php'
             })
                 .done(function (data) {
-                    console.log(data);
                     if (typeof(data.meilleursTemps) !== "undefined") {
                         for (let i = 0 ; i < data.meilleursTemps.length ; ++i) {
                             let trActu = $('<tr />');
@@ -179,7 +157,6 @@ A FAIRE > Essayer de rendre le site responsive
             'url':'/json/est_connecte.php'
         })
             .done(function (data) {
-                console.log(data);
 
                 if (data.fail_co === false) {
                     if (data.est_connecte === true) {
